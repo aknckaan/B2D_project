@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1057262873626",
+    "firebase_url": "https://b2d-notification-service.firebaseio.com",
+    "project_id": "b2d-notification-service",
+    "storage_bucket": "b2d-notification-service.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1057262873626:android:988b14068f0b85be",
+        "android_client_info": {
+          "package_name": "com.b2d.b2d_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1057262873626-f03a1iv488mafejjqadf07504m4e7l35.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.b2d.b2d_project",
+            "certificate_hash": "71AE9690F21475DB520356BC3947861DAF012E88"
+          }
+        },
+        {
+          "client_id": "1057262873626-89j5490ufe9g1df4qenpesvmojhoebm5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyNiCnO0EdOFyck_n-zodusFWOlpCBJ54"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1057262873626-89j5490ufe9g1df4qenpesvmojhoebm5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
