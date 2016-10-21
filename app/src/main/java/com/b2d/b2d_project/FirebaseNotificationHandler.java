@@ -21,4 +21,3 @@ public class FirebaseNotificationHandler extends FirebaseMessagingService {
             Log.d(TAG, "Notification Message Body: " + remoteMessage.getNotification().getBody());
         }
     }
-
