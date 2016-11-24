@@ -36,13 +36,14 @@ public class DeviceScreen extends AppCompatActivity {
         myBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         IntentFilter ifilter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         registerReceiver(bReceiver, ifilter);
-        BTArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        deviceList.setAdapter(BTArrayAdapter);
+
 
         //init ui
         swBluethooth = (Switch) findViewById(R.id.swBluetooth);
         btnFindDevices = (Button) findViewById(R.id.btnFindDevice);
         deviceList = (ListView) findViewById(R.id.lvDevices);
+        BTArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        deviceList.setAdapter(BTArrayAdapter);
 
         //
 

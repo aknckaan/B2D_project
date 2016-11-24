@@ -20,6 +20,6 @@ public class FirebaseManager extends FirebaseInstanceIdService {
         Log.d(TAG, "Refreshed token: " + refreshedToken);
 
         // TODO: Implement this method to send any registration to your app's servers.
-        //sendRegistrationToServer(refreshedToken);
+        //new TokenManager(refreshedToken);
     }
 }
