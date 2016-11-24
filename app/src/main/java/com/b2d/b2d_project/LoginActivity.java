@@ -19,7 +19,7 @@ import com.google.firebase.iid.FirebaseInstanceIdService;
 public class LoginActivity extends AppCompatActivity {
 
 
-    String usr="Buse123";//will be retrieved from database
+    String usr="Ali";//will be retrieved from database
     String pw="123";//will be retrieved from database
     EditText password;
     EditText username;
@@ -38,8 +38,8 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin= (Button) findViewById(R.id.btnLoginLog_In);
 
         Log.d(TAG, "Got token: " +  FirebaseInstanceId.getInstance().getToken());
-        TokenManager tkn= new TokenManager(usr,pw,FirebaseInstanceId.getInstance().getToken());
-        tkn.execute();
+        //TokenManager tkn= new TokenManager(usr,pw,FirebaseInstanceId.getInstance().getToken());
+        //tkn.execute();
 
 
         //delete
@@ -67,6 +67,12 @@ public class LoginActivity extends AppCompatActivity {
                                 Intent i = new Intent(LoginActivity.this,PatientInfoScreen.class);
                                 startActivity(i);
                             }
+                            if(lgn.result.equals("1D"))
+                            {
+                                Intent i = new Intent(LoginActivity.this,DoctorInfoScreen.class);
+                                startActivity(i);
+                            }
+
                             else if (lgn.result.equals("0"))
                             {
                                 AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(LoginActivity.this);

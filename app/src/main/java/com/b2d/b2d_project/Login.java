@@ -115,6 +115,10 @@ public class Login extends AsyncTask<String, String, String> {
                     {
                         suc+="P";
                     }
+                    else if(suc.equals("1")&&result.indexOf("Doctor")>0)
+                    {
+                        suc+="D";
+                    }
 
                     result = suc;
 

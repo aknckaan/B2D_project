@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.b2d.b2d_project">
 
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-
+    <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <service android:name=".FirebaseManager">
@@ -30,9 +29,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PatientInfoScreen"></activity>
-        <activity android:name=".DoctorInfoScreen"></activity>
-        <activity android:name=".DeviceScreen"></activity>
+        <activity android:name=".PatientInfoScreen" />
+        <activity android:name=".DoctorInfoScreen" />
+        <activity android:name=".DeviceScreen" />
+        <activity android:name=".DoctorList"></activity>
     </application>
 
 </manifest>
