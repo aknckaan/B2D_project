@@ -56,4 +56,12 @@
         android:layout_below="@+id/etLoginPassword"
         android:layout_alignParentEnd="true"
         android:id="@+id/btnLoginLog_In" />
+
+    <Button
+        android:text="Register (Patient Only)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnLogin_register"
+        android:layout_below="@+id/etLoginPassword"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

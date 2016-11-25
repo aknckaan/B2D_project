@@ -1,10 +1,8 @@
 package com.b2d.b2d_project;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.PersistableBundle;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
@@ -51,7 +49,7 @@ public class DoctorList extends AppCompatActivity {
 
             // Creation  button
             final Button button = new Button(this);
-            button.setText("Delete");
+            button.setText("Apply");
             button.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
