@@ -2,6 +2,7 @@ package com.b2d.b2d_project;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
+import android.print.PrinterId;
 
 import org.json.JSONObject;
 
@@ -19,37 +20,36 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Created by buseburcu on 24.11.2016.
+ * Created by buseburcu on 26.11.2016.
  */
-
-public class GetDoctorList extends AsyncTask<String, String, ArrayList<String>> {
-    private static final String LOGIN_URL = "http://kaanakinci.me/B2D/getDoctors.php";
+import java.util.Arrays;
+public class SendRequest extends AsyncTask<String, String, String> {
+    private static final String LOGIN_URL = "http://kaanakinci.me/B2D/setRequest.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
 
-    private String password;
-    private String username;
     public String result;
     ArrayList<String> arr3;
     private HttpURLConnection conn;
     public static final int CONNECTION_TIMEOUT = 15 * 1000;
     ProgressDialog p;
+    int dId;
+    int pId;
     /**
      * Before starting background thread Show Progress Dialog
      * */
-    boolean failure = false;
-    DoctorList dl;
 
 
-    public GetDoctorList(DoctorList dl,ProgressDialog p)
+
+    public SendRequest(int dId,int pId,ProgressDialog p)
     {
-        this.dl=dl;
+        this.dId=dId;
+        this.pId=pId;
         this.p=p;
 
     }
@@ -60,15 +60,14 @@ public class GetDoctorList extends AsyncTask<String, String, ArrayList<String>> 
     }
 
     @Override
-    protected ArrayList<String> doInBackground(String... args) {
+    protected String doInBackground(String... args) {
         // TODO Auto-generated method stub
         // Check for success tag
         int success;
 
-        // Building Parameters
-
-        // params.put("username", username);
-        //params.put("password", password);
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("dId", ""+dId);
+        params.put("pId", ""+pId);
 
         JSONObject object = null;
         try {
@@ -76,7 +75,7 @@ public class GetDoctorList extends AsyncTask<String, String, ArrayList<String>> 
             conn = (HttpURLConnection) url.openConnection();
             conn.setReadTimeout(CONNECTION_TIMEOUT);
             conn.setConnectTimeout(CONNECTION_TIMEOUT);
-            conn.setRequestMethod("GET");
+            conn.setRequestMethod("POST");
             conn.setDoInput(true);
             conn.setDoOutput(true);
             conn.connect();
@@ -84,7 +83,7 @@ public class GetDoctorList extends AsyncTask<String, String, ArrayList<String>> 
             OutputStream os = conn.getOutputStream();
             OutputStreamWriter osWriter = new OutputStreamWriter(os, "UTF-8");
             BufferedWriter writer = new BufferedWriter(osWriter);
-            //writer.write(getPostData(params));
+            writer.write(getPostData(params));
 
             writer.flush();
             writer.close();
@@ -101,20 +100,19 @@ public class GetDoctorList extends AsyncTask<String, String, ArrayList<String>> 
                     result += line;
                 }
 
-                System.out.println("print..................."+result);
 
                 //buse <3
 
-
-                String[] infoArr = result.split("\"");
-               arr3 = new ArrayList<String>();
+                result= result.substring(result.indexOf(":")+1,result.indexOf(":")+2);
+                /*String[] infoArr = result.split("\"");
+                arr3 = new ArrayList<String>();
                 int j = 0;
                 for(int i =3; i < infoArr.length ; i+=4) {
                     System.out.println("Print..........................................." + infoArr[i]);
                     arr3.add(infoArr[i]);
                     j++;
 
-                }
+                }*/
 
             }
         } catch (ProtocolException e) {
@@ -125,7 +123,7 @@ public class GetDoctorList extends AsyncTask<String, String, ArrayList<String>> 
             e.printStackTrace();
         }
 
-        return arr3;
+        return result;
     }
 
     public void test() throws IOException {
@@ -154,10 +152,14 @@ public class GetDoctorList extends AsyncTask<String, String, ArrayList<String>> 
      * After completing background task Dismiss the progress dialog
      * **/
     @Override
-    protected void onPostExecute(ArrayList<String> arr4) {
+    protected void onPostExecute(String arr4) {
 
 
         p.dismiss();
     }
 
 }
+
+
+
+
