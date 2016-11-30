@@ -21,5 +21,6 @@ public class FirebaseManager extends FirebaseInstanceIdService {
 
         // TODO: Implement this method to send any registration to your app's servers.
         //new TokenManager(refreshedToken);
+
     }
 }

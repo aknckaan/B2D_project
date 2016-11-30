@@ -3,18 +3,15 @@ package com.b2d.b2d_project;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.FirebaseInstanceIdService;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -38,9 +35,6 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin= (Button) findViewById(R.id.btnLoginLog_In);
 
         Log.d(TAG, "Got token: " +  FirebaseInstanceId.getInstance().getToken());
-        //TokenManager tkn= new TokenManager(usr,pw,FirebaseInstanceId.getInstance().getToken());
-        //tkn.execute();
-
 
         //delete
         username.setText(usr);
@@ -54,6 +48,8 @@ public class LoginActivity extends AppCompatActivity {
 
                     ProgressDialog pd= new ProgressDialog(LoginActivity.this);
 
+                    usr=username.getText().toString();
+                    pw=password.getText().toString();
                     final Login lgn = new Login(username.getText().toString(),password.getText().toString(),pd);
                     pd.show();
                     lgn.execute();
@@ -63,12 +59,17 @@ public class LoginActivity extends AppCompatActivity {
                         public void onDismiss(DialogInterface dialogInterface) {
                             if(lgn.result.equals("1P"))
                             {
-                                //finish();
+                                TokenManager tkn= new TokenManager(usr,pw,FirebaseInstanceId.getInstance().getToken());
+                                tkn.execute();
+
                                 Intent i = new Intent(LoginActivity.this,PatientInfoScreen.class);
                                 startActivity(i);
                             }
                             if(lgn.result.equals("1D"))
                             {
+                                TokenManager tkn= new TokenManager(usr,pw,FirebaseInstanceId.getInstance().getToken());
+                                tkn.execute();
+
                                 Intent i = new Intent(LoginActivity.this,DoctorInfoScreen.class);
                                 startActivity(i);
                             }
