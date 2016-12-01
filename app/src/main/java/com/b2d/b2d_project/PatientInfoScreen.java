@@ -21,6 +21,9 @@ public class PatientInfoScreen extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_patient_info);
 
+        Intent i=getIntent();
+        final int id;
+        id=i.getIntExtra("ID",0);
         btnDevice = (Button) findViewById(R.id.btnGoToDevice);
         btnFindDoctor = (Button) findViewById(R.id.btnFindDoctor);
 
@@ -37,7 +40,7 @@ public class PatientInfoScreen extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(PatientInfoScreen.this,DoctorList.class);
-
+                i.putExtra("ID",id);
                 startActivity(i);
             }
         });

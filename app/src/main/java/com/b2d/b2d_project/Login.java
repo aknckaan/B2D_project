@@ -109,13 +109,16 @@ public class Login extends AsyncTask<String, String, String> {
                         result += line;
                     }
 
-                    String suc = result.substring(result.indexOf(":")+1,result.indexOf(":")+2);
+                    String suc = result.substring(0,result.indexOf(","));
+                    String []suc2= suc.split("\"");
+                    suc = suc2[3];
 
-                    if(suc.equals("1")&&result.indexOf("Patient")>0)
+
+                    if(!suc.equals("0")&&result.indexOf("Patient")>0)
                     {
                         suc+="P";
                     }
-                    else if(suc.equals("1")&&result.indexOf("Doctor")>0)
+                    else if(!suc.equals("0")&&result.indexOf("Doctor")>0)
                     {
                         suc+="D";
                     }
@@ -131,7 +134,7 @@ public class Login extends AsyncTask<String, String, String> {
                 e.printStackTrace();
             }
 
-                return null;
+                return result;
         }
 
     public void test() throws IOException {

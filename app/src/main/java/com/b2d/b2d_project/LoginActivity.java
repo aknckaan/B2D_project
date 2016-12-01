@@ -60,7 +60,8 @@ public class LoginActivity extends AppCompatActivity {
                     pd.setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
                         public void onDismiss(DialogInterface dialogInterface) {
-                            if(lgn.result.equals("1P"))
+                            int id= Integer.parseInt(lgn.result.substring(0,lgn.result.length()-1));
+                            if(lgn.result.indexOf("P")>0&&id>0)
                             {
                                 TokenManager tkn= new TokenManager(usr,pw,FirebaseInstanceId.getInstance().getToken());
                                 tkn.execute();
@@ -73,9 +74,10 @@ public class LoginActivity extends AppCompatActivity {
                                 }
 
                                 Intent i = new Intent(LoginActivity.this,PatientInfoScreen.class);
+                                i.putExtra("ID",id);
                                 startActivity(i);
                             }
-                            if(lgn.result.equals("1D"))
+                            if(lgn.result.indexOf("D")>0&&id>0)
                             {
                                 TokenManager tkn= new TokenManager(usr,pw,FirebaseInstanceId.getInstance().getToken());
                                 tkn.execute();
