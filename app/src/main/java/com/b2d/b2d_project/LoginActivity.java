@@ -3,12 +3,14 @@ package com.b2d.b2d_project;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -16,11 +18,12 @@ import com.google.firebase.iid.FirebaseInstanceId;
 public class LoginActivity extends AppCompatActivity {
 
 
-    String usr="Ali";//will be retrieved from database
-    String pw="123";//will be retrieved from database
+    String usr=getSharedPreferences("Login_Pref", MODE_PRIVATE).getString("UName","");
+    String pw=getSharedPreferences("Login_Pref", MODE_PRIVATE).getString("Password","");//will be retrieved from database
     EditText password;
     EditText username;
     Button btnLogin;
+    CheckBox cbRemember;
     private static final String TAG = "LoginActivity";
 
     @Override
@@ -33,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         password =(EditText) findViewById(R.id.etLoginPassword);
         username = (EditText)findViewById(R.id.etLoginUserName);
         btnLogin= (Button) findViewById(R.id.btnLoginLog_In);
-
+        cbRemember = (CheckBox) findViewById(R.id.cbRemember);
         Log.d(TAG, "Got token: " +  FirebaseInstanceId.getInstance().getToken());
 
         //delete
@@ -61,6 +64,13 @@ public class LoginActivity extends AppCompatActivity {
                             {
                                 TokenManager tkn= new TokenManager(usr,pw,FirebaseInstanceId.getInstance().getToken());
                                 tkn.execute();
+                                if(cbRemember.isChecked())
+                                {
+                                    SharedPreferences.Editor editor = getSharedPreferences("Login_Pref", MODE_PRIVATE).edit();
+                                    editor.putString("UName", usr);
+                                    editor.putString("Password", pw);
+                                    editor.commit();
+                                }
 
                                 Intent i = new Intent(LoginActivity.this,PatientInfoScreen.class);
                                 startActivity(i);

@@ -49,19 +49,29 @@
         android:layout_below="@+id/txtLoginPw"
         android:layout_alignParentStart="true" />
 
+    <CheckBox
+        android:text="Remember me"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cbRemember"
+        android:layout_below="@+id/etLoginPassword"
+        android:layout_alignParentStart="true" />
+
     <Button
         android:text="Log in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etLoginPassword"
+        android:id="@+id/btnLoginLog_In"
+        android:layout_below="@+id/cbRemember Me"
         android:layout_alignParentEnd="true"
-        android:id="@+id/btnLoginLog_In" />
+        android:layout_marginTop="31dp" />
 
     <Button
         android:text="Register (Patient Only)"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnLogin_register"
-        android:layout_below="@+id/etLoginPassword"
+        android:layout_alignBaseline="@+id/btnLoginLog_In"
+        android:layout_alignBottom="@+id/btnLoginLog_In"
         android:layout_alignParentStart="true" />
 </RelativeLayout>
