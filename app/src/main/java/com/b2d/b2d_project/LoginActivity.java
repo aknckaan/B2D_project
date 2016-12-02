@@ -124,6 +124,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(LoginActivity.this,PatientRegister.class);
+                i.putExtra("New",true);
                 startActivity(i);
             }
         });
