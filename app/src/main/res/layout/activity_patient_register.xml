@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_patient_register"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.b2d.b2d_project.PatientRegister">
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spAge"
+        android:layout_alignTop="@+id/tvGender"
+        android:layout_alignEnd="@+id/etSurname"
+        android:layout_toEndOf="@+id/tvUsername"
+        android:elevation="24dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/etRegisterAge"
+        android:layout_below="@+id/spAge"
+        android:layout_toEndOf="@+id/tvCountry"
+        android:hint="Enter Age"
+        android:layout_alignStart="@+id/spAge" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvCountry"
+        android:text="Country:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_alignBaseline="@+id/etRegisterCountry"
+        android:layout_alignBottom="@+id/etRegisterCountry"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Age:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvAge"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_alignBaseline="@+id/etRegisterAge"
+        android:layout_alignBottom="@+id/etRegisterAge"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/tvGender" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/etRegisterCountry"
+        android:hint="Enter Country"
+        android:layout_below="@+id/etRegisterAge"
+        android:layout_toEndOf="@+id/tvCountry"
+        android:layout_alignStart="@+id/etRegisterAge" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_below="@+id/etRegisterCountry"
+        android:layout_alignStart="@+id/etRegisterCountry"
+        android:id="@+id/etCity"
+        android:hint="Enter City" />
+
+    <TextView
+        android:text="City:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/etRegisterCity"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_alignBaseline="@+id/etCity"
+        android:layout_alignBottom="@+id/etCity"
+        android:layout_alignEnd="@+id/tvCountry"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Address:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etCity"
+        android:layout_marginTop="11dp"
+        android:id="@+id/tvAddress"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textCapWords|textPersonName"
+        android:ems="10"
+        android:id="@+id/etRegisterAddress"
+        android:hint="Enter Address"
+        android:layout_alignBaseline="@+id/tvAddress"
+        android:layout_alignBottom="@+id/tvAddress"
+        android:layout_toEndOf="@+id/tvAddress"
+        android:layout_alignStart="@+id/etCity" />
+
+    <TextView
+        android:text="Phone Number:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvPhoneNumber"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_alignBottom="@+id/etPhoneNumber"
+        android:layout_toStartOf="@+id/etRegisterAddress"
+        android:layout_below="@+id/etRegisterAddress"
+        android:layout_alignEnd="@+id/swEdit" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/etPhoneNumber"
+        android:layout_below="@+id/etRegisterAddress"
+        android:layout_toEndOf="@+id/tvPhoneNumber"
+        android:layout_alignStart="@+id/etRegisterAddress"
+        android:hint="Enter Phone Number" />
+
+    <Switch
+        android:text="Edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvPhoneNumber"
+        android:layout_alignStart="@+id/etRegisterCity"
+        android:layout_marginTop="21dp"
+        android:id="@+id/swEdit"
+        android:checked="true"
+        android:textColorLink="@android:color/holo_blue_dark"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/etRegisterName"
+        android:hint="Enter Name"
+        android:textColorLink="@android:color/holo_blue_dark"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/tvRegisterName" />
+
+    <TextView
+        android:text="Enter Name:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvRegisterName"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_alignBaseline="@+id/etRegisterName"
+        android:layout_alignBottom="@+id/etRegisterName"
+        android:layout_alignStart="@+id/etRegisterCity"
+        android:layout_alignEnd="@+id/tvRegisterSurname" />
+
+    <TextView
+        android:text="Enter Surname:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvRegisterSurname"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_below="@+id/etRegisterName"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/etSurname"
+        android:hint="Enter Surname"
+        android:textColorLink="@android:color/holo_blue_dark"
+        android:layout_alignBaseline="@+id/tvRegisterSurname"
+        android:layout_alignBottom="@+id/tvRegisterSurname"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/tvRegisterSurname" />
+
+    <TextView
+        android:text="Gender:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvGender"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_marginTop="73dp"
+        android:layout_below="@+id/etSurname"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Username:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvUsername"
+        android:layout_below="@+id/etSurname"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_alignEnd="@+id/tvRegisterSurname" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/etUsername"
+        android:layout_alignBaseline="@+id/tvUsername"
+        android:layout_alignBottom="@+id/tvUsername"
+        android:layout_alignParentEnd="true"
+        android:hint="Choose a username"
+        android:layout_toEndOf="@+id/tvUsername" />
+
+</RelativeLayout>

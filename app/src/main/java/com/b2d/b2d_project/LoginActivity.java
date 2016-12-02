@@ -9,6 +9,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -18,17 +20,24 @@ import com.google.firebase.iid.FirebaseInstanceId;
 public class LoginActivity extends AppCompatActivity {
 
 
-    String usr=getSharedPreferences("Login_Pref", MODE_PRIVATE).getString("UName","");
-    String pw=getSharedPreferences("Login_Pref", MODE_PRIVATE).getString("Password","");//will be retrieved from database
+    String usr;
+    String pw;//will be retrieved from database
     EditText password;
     EditText username;
     Button btnLogin;
     CheckBox cbRemember;
+    CheckBox cbAuto;
+    ProgressDialog pd;
+    SharedPreferences.Editor editor;
     private static final String TAG = "LoginActivity";
+    Button btnRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
 
         FirebaseManager fm=new FirebaseManager();
@@ -37,20 +46,22 @@ public class LoginActivity extends AppCompatActivity {
         username = (EditText)findViewById(R.id.etLoginUserName);
         btnLogin= (Button) findViewById(R.id.btnLoginLog_In);
         cbRemember = (CheckBox) findViewById(R.id.cbRemember);
+        cbAuto = (CheckBox) findViewById(R.id.cbAutoLogin);
+        btnRegister=(Button) findViewById(R.id.btnRegister);
+        cbRemember.setChecked(true);
+        editor = getSharedPreferences("Login_Pref", MODE_PRIVATE).edit();
         Log.d(TAG, "Got token: " +  FirebaseInstanceId.getInstance().getToken());
 
         //delete
-        username.setText(usr);
-        password.setText(pw);
-        //
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 
-                    ProgressDialog pd= new ProgressDialog(LoginActivity.this);
-
+                    pd= new ProgressDialog(LoginActivity.this);
+                    pd.setMessage("Loading...");
                     usr=username.getText().toString();
                     pw=password.getText().toString();
                     final Login lgn = new Login(username.getText().toString(),password.getText().toString(),pd);
@@ -67,9 +78,10 @@ public class LoginActivity extends AppCompatActivity {
                                 tkn.execute();
                                 if(cbRemember.isChecked())
                                 {
-                                    SharedPreferences.Editor editor = getSharedPreferences("Login_Pref", MODE_PRIVATE).edit();
+                                    editor = getSharedPreferences("Login_Pref", MODE_PRIVATE).edit();
                                     editor.putString("UName", usr);
                                     editor.putString("Password", pw);
+                                    editor.putBoolean("Auto",cbAuto.isChecked());
                                     editor.commit();
                                 }
 
@@ -81,6 +93,14 @@ public class LoginActivity extends AppCompatActivity {
                             {
                                 TokenManager tkn= new TokenManager(usr,pw,FirebaseInstanceId.getInstance().getToken());
                                 tkn.execute();
+                                if(cbRemember.isChecked())
+                                {
+                                    editor = getSharedPreferences("Login_Pref", MODE_PRIVATE).edit();
+                                    editor.putString("UName", usr);
+                                    editor.putString("Password", pw);
+                                    editor.putBoolean("Auto",cbAuto.isChecked());
+                                    editor.commit();
+                                }
 
                                 Intent i = new Intent(LoginActivity.this,DoctorInfoScreen.class);
                                 startActivity(i);
@@ -100,5 +120,34 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LoginActivity.this,PatientRegister.class);
+                startActivity(i);
+            }
+        });
+
+        getPrefs();
+        if(cbAuto.isChecked())
+        {
+
+            btnLogin.performClick();
+        }
+    }
+
+    public void getPrefs()
+    {
+        usr=getSharedPreferences("Login_Pref", MODE_PRIVATE).getString("UName",null);
+        pw=getSharedPreferences("Login_Pref", MODE_PRIVATE).getString("Password",null);
+        Boolean auto = getSharedPreferences("Login_Pref",MODE_PRIVATE).getBoolean("Auto",false);
+        if(usr!=null)
+            username.setText(usr);
+        if(pw!=null)
+            password.setText(pw);
+        if(cbAuto!=null)
+        {
+            cbAuto.setChecked(auto);
+        }
     }
 }

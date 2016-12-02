@@ -23,29 +23,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by buseburcu on 26.11.2016.
+ * Created by buseburcu on 24.11.2016.
  */
-public class SendRequest extends AsyncTask<String, String, String> {
-    private static final String LOGIN_URL = "http://kaanakinci.me/B2D/setRequest.php";
-    private static final String TAG_SUCCESS = "success";
-    private static final String TAG_MESSAGE = "message";
+
+public class GetRequestList extends AsyncTask<String, String, ArrayList<String>> {
+    private static final String LOGIN_URL = "http://kaanakinci.me/B2D/getRequestList.php";
+
+
 
     public String result;
     ArrayList<String> arr3;
     private HttpURLConnection conn;
     public static final int CONNECTION_TIMEOUT = 15 * 1000;
     ProgressDialog p;
-    int dId;
+
     int pId;
-    /**
-     * Before starting background thread Show Progress Dialog
-     * */
 
 
-
-    public SendRequest(int dId,int pId,ProgressDialog p)
+    public GetRequestList(int pId,ProgressDialog p)
     {
-        this.dId=dId;
         this.pId=pId;
         this.p=p;
 
@@ -57,12 +53,10 @@ public class SendRequest extends AsyncTask<String, String, String> {
     }
 
     @Override
-    protected String doInBackground(String... args) {
-
+    protected ArrayList<String> doInBackground(String... args) {
 
         HashMap<String, String> params = new HashMap<String, String>();
-        params.put("dId", ""+dId);
-        params.put("pId", ""+pId);
+        params.put("PId", ""+pId);
 
         JSONObject object = null;
         try {
@@ -79,7 +73,6 @@ public class SendRequest extends AsyncTask<String, String, String> {
             OutputStreamWriter osWriter = new OutputStreamWriter(os, "UTF-8");
             BufferedWriter writer = new BufferedWriter(osWriter);
             writer.write(getPostData(params));
-
             writer.flush();
             writer.close();
             os.close();
@@ -95,19 +88,17 @@ public class SendRequest extends AsyncTask<String, String, String> {
                     result += line;
                 }
 
-
                 //buse <3
 
-                result= result.substring(result.indexOf(":")+1,result.indexOf(":")+2);
-                /*String[] infoArr = result.split("\"");
+
+                String[] infoArr = result.split("\"");
                 arr3 = new ArrayList<String>();
                 int j = 0;
                 for(int i =3; i < infoArr.length ; i+=4) {
-                    System.out.println("Print..........................................." + infoArr[i]);
                     arr3.add(infoArr[i]);
                     j++;
 
-                }*/
+                }
 
             }
         } catch (ProtocolException e) {
@@ -118,7 +109,7 @@ public class SendRequest extends AsyncTask<String, String, String> {
             e.printStackTrace();
         }
 
-        return result;
+        return arr3;
     }
 
     public void test() throws IOException {
@@ -147,14 +138,10 @@ public class SendRequest extends AsyncTask<String, String, String> {
      * After completing background task Dismiss the progress dialog
      * **/
     @Override
-    protected void onPostExecute(String arr4) {
+    protected void onPostExecute(ArrayList<String> arr4) {
 
 
-        p.dismiss();
+        //p.dismiss();
     }
 
 }
-
-
-
-

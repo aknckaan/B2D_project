@@ -5,17 +5,43 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:text="FindDoctor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnFindDoctor"
-        android:layout_weight="1" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginBottom="25dp"
+        android:layout_marginEnd="11dp">
 
-    <Button
-        android:text="Connect to Device"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnGoToDevice"
-        android:layout_weight="1" />
+        <Button
+            android:text="FindDoctor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnFindDoctor"
+            android:layout_weight="1"
+            android:layout_centerVertical="true"
+            android:layout_alignStart="@+id/btnGoToDevice"
+            android:layout_alignEnd="@+id/btnGoToDevice" />
+
+        <Button
+            android:text="Connect to Device"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnGoToDevice"
+            android:layout_weight="1"
+            android:layout_above="@+id/btnFindDoctor"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/btod"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/imageView"
+            android:layout_marginStart="31dp"
+            android:layout_marginBottom="95dp"
+            android:layout_toEndOf="@+id/btnGoToDevice"
+            android:layout_above="@+id/btnGoToDevice" />
+    </RelativeLayout>
+
 </LinearLayout>

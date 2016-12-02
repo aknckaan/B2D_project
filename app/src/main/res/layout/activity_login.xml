@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
@@ -10,13 +11,50 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.b2d.b2d_project.LoginActivity">
 
-    <TextView
-        android:text="Please Enter Your User ID:"
+    <Button
+        android:text="Log in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:id="@+id/btnLoginLog_In"
+        android:layout_alignBaseline="@+id/btnRegister"
+        android:layout_alignBottom="@+id/btnRegister"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="Register (Patient Only)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnRegister"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/txtLoginId" />
+        android:layout_marginBottom="57dp" />
+
+    <CheckBox
+        android:text="Remember me"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cbRemember"
+        android:layout_above="@+id/btnRegister"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="39dp" />
+
+    <CheckBox
+        android:text="Auto Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cbAutoLogin"
+        android:layout_alignBaseline="@+id/cbRemember"
+        android:layout_alignBottom="@+id/cbRemember"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Enter Your ID:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtLoginId"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_above="@+id/etLoginUserName"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -25,17 +63,8 @@
         android:ems="10"
         android:id="@+id/etLoginUserName"
         android:hint="Enter User ID"
-        android:layout_below="@+id/txtLoginId"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="11dp" />
-
-    <TextView
-        android:text="Please Enter Your Password:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
-        android:id="@+id/txtLoginPw"
-        android:layout_below="@+id/etLoginUserName"
+        android:layout_marginBottom="21dp"
+        android:layout_above="@+id/txtLoginPw"
         android:layout_alignParentStart="true" />
 
     <EditText
@@ -43,35 +72,31 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:layout_marginTop="13dp"
         android:id="@+id/etLoginPassword"
         android:hint="Enter Password"
-        android:layout_below="@+id/txtLoginPw"
-        android:layout_alignParentStart="true" />
+        android:layout_above="@+id/cbRemember"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="62dp" />
 
-    <CheckBox
-        android:text="Remember me"
+    <TextView
+        android:text="Enter Your Password:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/cbRemember"
-        android:layout_below="@+id/etLoginPassword"
+        android:id="@+id/txtLoginPw"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_marginBottom="40dp"
+        android:layout_alignBottom="@+id/etLoginPassword"
         android:layout_alignParentStart="true" />
 
-    <Button
-        android:text="Log in"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnLoginLog_In"
-        android:layout_below="@+id/cbRemember Me"
+        app:srcCompat="@mipmap/btod"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="31dp" />
-
-    <Button
-        android:text="Register (Patient Only)"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnLogin_register"
-        android:layout_alignBaseline="@+id/btnLoginLog_In"
-        android:layout_alignBottom="@+id/btnLoginLog_In"
-        android:layout_alignParentStart="true" />
+        android:id="@+id/imageView"
+        android:layout_above="@+id/txtLoginId"
+        android:layout_alignStart="@+id/btnLoginLog_In"
+        android:layout_marginStart="11dp"
+        android:layout_marginBottom="25dp" />
 </RelativeLayout>
