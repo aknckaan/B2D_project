@@ -62,7 +62,6 @@ public class DoctorList extends AppCompatActivity {
             // Creation row
             final TableRow tableRow = new TableRow(this);
             tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
-
             // Creation textView
 
             final TextView text = new TextView(this);

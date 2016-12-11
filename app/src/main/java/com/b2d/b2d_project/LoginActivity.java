@@ -16,6 +16,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -41,7 +42,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         FirebaseManager fm=new FirebaseManager();
-
+        FirebaseMessaging.getInstance().subscribeToTopic("test");
+        FirebaseInstanceId.getInstance().getToken();
         password =(EditText) findViewById(R.id.etLoginPassword);
         username = (EditText)findViewById(R.id.etLoginUserName);
         btnLogin= (Button) findViewById(R.id.btnLoginLog_In);
