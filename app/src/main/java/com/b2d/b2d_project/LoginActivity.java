@@ -42,8 +42,17 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         FirebaseManager fm=new FirebaseManager();
+        FirebaseNotificationHandler nh = new FirebaseNotificationHandler();
         FirebaseMessaging.getInstance().subscribeToTopic("test");
         FirebaseInstanceId.getInstance().getToken();
+
+        String a =getIntent().getStringExtra("key2");
+
+        if(a!=null)
+        {
+            System.out.println("key2= "+a);
+        }
+
         password =(EditText) findViewById(R.id.etLoginPassword);
         username = (EditText)findViewById(R.id.etLoginUserName);
         btnLogin= (Button) findViewById(R.id.btnLoginLog_In);
@@ -51,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         cbAuto = (CheckBox) findViewById(R.id.cbAutoLogin);
         btnRegister=(Button) findViewById(R.id.btnRegister);
         cbRemember.setChecked(true);
+
         editor = getSharedPreferences("Login_Pref", MODE_PRIVATE).edit();
         Log.d(TAG, "Got token: " +  FirebaseInstanceId.getInstance().getToken());
 

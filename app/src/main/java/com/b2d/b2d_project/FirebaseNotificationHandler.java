@@ -1,10 +1,12 @@
 package com.b2d.b2d_project;
 
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -14,31 +16,27 @@ public class FirebaseNotificationHandler extends FirebaseMessagingService {
 
         @Override
         public void onMessageReceived(RemoteMessage remoteMessage) {
-            // TODO(developer): Handle FCM messages here.
-            // If the application is in the foreground handle both data and notification messages here.
-            // Also if you intend on generating your own notifications as a result of a received FCM
-            // message, here is where that should be initiated. See sendNotification method below.
-
-            showNotification(remoteMessage.getData().get("message"));
-            Log.d(TAG, "From: " + remoteMessage.getFrom());
-            Log.d(TAG, "Notification Message Body: " + remoteMessage.getNotification().getBody());
+            super.onMessageReceived(remoteMessage);
+            Toast.makeText(getApplicationContext(), "Notification received!", Toast.LENGTH_SHORT).show();
+            System.out.println("*************************************");
+            //showNotification(remoteMessage.getData().get("message"));
+            Log.d(TAG, "Notification received! ");
+            //Log.d(TAG, "Notification Message Body: " + remoteMessage.getNotification().getBody());
         }
     private void showNotification(String message) {
 
-        Intent i = new Intent(this,LoginActivity.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        NotificationManager notificationManager = (NotificationManager) getApplicationContext()
+                .getSystemService(Context.NOTIFICATION_SERVICE);
+        Notification note = new Notification(R.mipmap.ic_launcher, "MYAPP", System.currentTimeMillis());
+        Intent notificationIntent = new Intent(getApplicationContext(), LoginActivity.class);
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(this,0,i,PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, notificationIntent, 0);
+        note.defaults |= Notification.DEFAULT_SOUND;
+        note.defaults |= Notification.DEFAULT_VIBRATE;
+        note.defaults |= Notification.DEFAULT_LIGHTS;
+        note.flags |= Notification.FLAG_AUTO_CANCEL;
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                .setAutoCancel(true)
-                .setContentTitle("FCM Test")
-                .setContentText(message)
-                .setSmallIcon(R.drawable.common_google_signin_btn_icon_dark)
-                .setContentIntent(pendingIntent);
-
-        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-
-        manager.notify(0,builder.build());
+        notificationManager.notify(0, note);
     }
     }
