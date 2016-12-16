@@ -16,7 +16,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -27,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText username;
     Button btnLogin;
     CheckBox cbRemember;
+    String a;
     CheckBox cbAuto;
     ProgressDialog pd;
     SharedPreferences.Editor editor;
@@ -41,19 +41,14 @@ public class LoginActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
 
-        FirebaseManager fm=new FirebaseManager();
-        FirebaseNotificationHandler nh = new FirebaseNotificationHandler();
-        FirebaseMessaging.getInstance().subscribeToTopic("test");
-        FirebaseInstanceId.getInstance().getToken();
-
-        String a =getIntent().getStringExtra("key2");
-
-        if(a!=null)
+        try {
+                a = getIntent().getExtras().get("pId").toString();
+        }catch (Exception e)
         {
-            System.out.println("key2= "+a);
+
         }
 
-        password =(EditText) findViewById(R.id.etLoginPassword);
+            password =(EditText) findViewById(R.id.etLoginPassword);
         username = (EditText)findViewById(R.id.etLoginUserName);
         btnLogin= (Button) findViewById(R.id.btnLoginLog_In);
         cbRemember = (CheckBox) findViewById(R.id.cbRemember);
@@ -62,10 +57,6 @@ public class LoginActivity extends AppCompatActivity {
         cbRemember.setChecked(true);
 
         editor = getSharedPreferences("Login_Pref", MODE_PRIVATE).edit();
-        Log.d(TAG, "Got token: " +  FirebaseInstanceId.getInstance().getToken());
-
-        //delete
-
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
