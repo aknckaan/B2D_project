@@ -36,7 +36,7 @@ public class FirebaseNotification extends FirebaseMessagingService {
 
         builder.setContentIntent(contentIntent);
         builder.setAutoCancel(true);
-        builder.setLights(Color.BLUE, 500, 500);
+        //builder.setLights(Color.BLUE, 500, 500);
         long[] pattern = {500,500,500,500,500,500,500,500,500,500};
         builder.setVibrate(pattern);
         builder.setSound(Uri.parse("android.resource://"+getApplicationContext().getPackageName()+"/"+R.raw.btod_notif));

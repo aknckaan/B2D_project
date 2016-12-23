@@ -7,13 +7,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 
         }
 
-            password =(EditText) findViewById(R.id.etLoginPassword);
+        password =(EditText) findViewById(R.id.etLoginPassword);
         username = (EditText)findViewById(R.id.etLoginUserName);
         btnLogin= (Button) findViewById(R.id.btnLoginLog_In);
         cbRemember = (CheckBox) findViewById(R.id.cbRemember);
@@ -67,13 +67,19 @@ public class LoginActivity extends AppCompatActivity {
                     pd.setMessage("Loading...");
                     usr=username.getText().toString();
                     pw=password.getText().toString();
-                    final Login lgn = new Login(username.getText().toString(),password.getText().toString(),pd);
+                    final Login lgn = new Login(username.getText().toString(),password.getText().toString(),pd,LoginActivity.this);
                     pd.show();
                     lgn.execute();
 
                     pd.setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
                         public void onDismiss(DialogInterface dialogInterface) {
+                            if(lgn.result==null || lgn.result.equals("0"))
+                            {
+                                Toast.makeText(getApplicationContext(),"Check your internet connection and try again!",Toast.LENGTH_LONG).show();
+                                return;
+                            }
+
                             int id= Integer.parseInt(lgn.result.substring(0,lgn.result.length()-1));
                             if(lgn.result.indexOf("P")>0&&id>0)
                             {

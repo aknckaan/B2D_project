@@ -16,9 +16,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/tvPhoneNumber"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:layout_toStartOf="@+id/etRegisterAddress"
-        android:layout_alignTop="@+id/etPhoneNumber"
-        android:layout_alignEnd="@+id/swEdit" />
+        android:layout_toStartOf="@+id/etPhoneNumber"
+        android:layout_alignTop="@+id/etPhoneNumber" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -71,18 +70,6 @@
         android:layout_alignParentEnd="true"
         android:layout_toEndOf="@+id/tvCountry"
         android:layout_below="@+id/etRegisterAge" />
-
-    <Switch
-        android:text="Edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/swEdit"
-        android:checked="true"
-        android:textColorLink="@android:color/holo_blue_dark"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:layout_below="@+id/tvPhoneNumber"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="12dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -194,10 +181,10 @@
         android:text="City:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/etRegisterCity"
+        android:id="@+id/tvRegisterCity"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:layout_alignBaseline="@+id/tvCity"
-        android:layout_alignBottom="@+id/tvCity"
+        android:layout_alignBaseline="@+id/etCity"
+        android:layout_alignBottom="@+id/etCity"
         android:layout_alignParentStart="true"
         android:layout_toStartOf="@+id/etRegisterAge" />
 
@@ -216,11 +203,11 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/tvCity"
+        android:id="@+id/etCity"
         android:hint="Enter City"
         android:layout_below="@+id/etRegisterCountry"
         android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/etRegisterCity" />
+        android:layout_toEndOf="@+id/tvRegisterCity" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -229,8 +216,46 @@
         android:ems="10"
         android:id="@+id/etRegisterAddress"
         android:hint="Enter Address"
-        android:layout_below="@+id/tvCity"
+        android:layout_below="@+id/etCity"
         android:layout_alignParentEnd="true"
         android:layout_alignStart="@+id/etSurname" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spType"
+        android:layout_below="@+id/etPhoneNumber"
+        android:layout_toEndOf="@+id/tvAccountType"
+        android:layout_alignStart="@+id/spGender" />
+
+    <TextView
+        android:text="Type:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:id="@+id/tvAccountType"
+        android:layout_below="@+id/tvPhoneNumber"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_toStartOf="@+id/spGender"
+        android:layout_alignBottom="@+id/spType" />
+
+    <Button
+        android:text="Save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnSave"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <Switch
+        android:text="Edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/swEdit"
+        android:checked="true"
+        android:textColorLink="@android:color/holo_blue_dark"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

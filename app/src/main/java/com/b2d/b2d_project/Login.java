@@ -1,5 +1,13 @@
 package com.b2d.b2d_project;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.os.AsyncTask;
+
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -13,34 +21,12 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.ContentValues;
-import android.content.Context;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class Login extends AsyncTask<String, String, String> {
 
     private static final String LOGIN_URL = "http://kaanakinci.me/B2D/login.php";
-    private static final String TAG_SUCCESS = "success";
-    private static final String TAG_MESSAGE = "message";
 
     private String password;
     private String username;
@@ -48,14 +34,13 @@ public class Login extends AsyncTask<String, String, String> {
     private HttpURLConnection conn;
     public static final int CONNECTION_TIMEOUT = 15 * 1000;
     ProgressDialog p;
-        /**
-         * Before starting background thread Show Progress Dialog
-         * */
-        boolean failure = false;
+    Activity a;
 
 
-    public Login(String uname,String pw,ProgressDialog p)
+
+    public Login(String uname, String pw, ProgressDialog p, Activity a)
     {
+        this.a=a;
         this.password=pw;
         this.username=uname;
         this.p=p;
@@ -71,6 +56,12 @@ public class Login extends AsyncTask<String, String, String> {
         protected String doInBackground(String... args) {
             // TODO Auto-generated method stub
             // Check for success tag
+            if(!isNetworkConnected())
+            {
+                result=0+"";
+                return result;
+            }
+
             int success;
 
                 // Building Parameters
@@ -136,6 +127,15 @@ public class Login extends AsyncTask<String, String, String> {
 
                 return result;
         }
+
+
+    private boolean isNetworkConnected() {
+
+        ConnectivityManager cm = (ConnectivityManager)a.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null;
+    }
+
 
     public void test() throws IOException {
 
