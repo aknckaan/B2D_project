@@ -40,7 +40,7 @@ public class GetNewPatients extends AsyncTask<String, String, ArrayList<String>>
     int pId;
 
 
-    public GetNewPatients(int dId,ProgressDialog p)
+    public GetNewPatients(NewPatientList dId, ProgressDialog p)
     {
         this.pId=pId;
         this.p=p;
