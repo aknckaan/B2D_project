@@ -38,7 +38,7 @@ public class GetNewPatients extends AsyncTask<String, String, ArrayList<String>>
     int dId;
 
 
-    public GetNewPatients(NewPatientList dId, ProgressDialog p)
+    public GetNewPatients(int dId, ProgressDialog p)
     {
         this.dId=dId;
         this.p=p;
@@ -54,7 +54,7 @@ public class GetNewPatients extends AsyncTask<String, String, ArrayList<String>>
     protected ArrayList<String> doInBackground(String... args) {
 
         HashMap<String, String> params = new HashMap<String, String>();
-        params.put("dId", ""+dId);
+        params.put("DId", ""+dId);
 
         JSONObject object = null;
         try {

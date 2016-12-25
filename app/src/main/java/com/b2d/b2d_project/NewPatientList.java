@@ -19,92 +19,108 @@ public class NewPatientList extends AppCompatActivity {
 
     TableLayout tblNewPatients;
     public ArrayList<String> arr;
-    public ArrayList<String>arr2;
+    public ArrayList<String> arr2;
+    public ArrayList<NewPatient> newp;
     int id;
+
     @Override
 
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_new_patient_list);
-            ProgressDialog pd= new ProgressDialog(NewPatientList.this);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_new_patient_list);
+        ProgressDialog pd = new ProgressDialog(NewPatientList.this);
 
 
-            tblNewPatients = (TableLayout) findViewById(R.id.tblNewPatients);
-            id=getIntent().getIntExtra("ID",0);
+        tblNewPatients = (TableLayout) findViewById(R.id.tblNewPatients);
+        id = getIntent().getIntExtra("ID", 0);
 
-            new ArrayList<String>();
-
-
-            final GetNewPatients getNewPatients = new GetNewPatients(this,pd);
+        new ArrayList<String>();
 
 
-            try {
-                arr=getNewPatients.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
+        final GetNewPatients getNewPatients = new GetNewPatients(id, pd);
+        getNewPatients.execute();
 
-            pd.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        try {
+            arr = getNewPatients.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        newp = new ArrayList<NewPatient>();
+        for (int i = 0; i < arr.size(); i = i + 5) {
+
+            NewPatient np = new NewPatient(arr.get(i), arr.get(i + 1), arr.get(i + 2), arr.get(i + 3), arr.get(i + 4));
+
+            newp.add(np);
+
+        }
+
+        for (int i = 0; i < newp.size(); i=i+1) {
+            // Creation row
+            final TableRow tableRow = new TableRow(this);
+            tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
+            // Creation textView
+
+            final TextView text = new TextView(this);
+
+            Boolean requested=false;
+
+            text.setText(newp.get(i).id+" "+ newp.get(i).name +" "+ newp.get(i).surname +" " + newp.get(i).gender);
+            text.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+
+            final Button button = new Button(this);
+            final Button button2 = new Button(this);
+
+            button.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onDismiss(DialogInterface dialogInterface) {
-
+                public void onClick(View view) {
+                    TableRow tr=(TableRow) view.getParent();
+                    ProgressDialog pd= new ProgressDialog(NewPatientList.this);
                 }
             });
 
-
-                final Button button = new Button(this);
-
-                button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        TableRow tr=(TableRow) view.getParent();
-
-                        TextView tw=(TextView) tr.getChildAt(0);
-                        String str= (String) tw.getText();
-
-                        ProgressDialog pd= new ProgressDialog(NewPatientList.this);
-                        final SendRequest sendReq = new SendRequest(Integer.parseInt(str.split(" ")[2]),id,pd);
-
-                        try {
-                            sendReq.execute();
-                            pd.show();
-                            String res=sendReq.get();
-                            if(res.equals("1"))
-                            {
-                                ((Button)view).setText("APPLIED");
-                                tw.setTextColor(Color.GRAY);
-                                ((Button)view).setTextColor(Color.GRAY);
-                                Toast.makeText(getApplicationContext(),"Request sent!",Toast.LENGTH_LONG).show();
-                            }
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        } catch (ExecutionException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-
-                // Creation  button
-
-                if(requested)
-                {
-                    button.setTextColor(Color.GRAY);
-                    button.setText("APPLIED");
+            button2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    TableRow tr=(TableRow) view.getParent();
+                    ProgressDialog pd= new ProgressDialog(NewPatientList.this);
                 }
-                else
-                    button.setText("Apply");
+            });
 
-                button.setClickable(!requested);
-                button.setEnabled(!requested);
+            // Creation  button
 
-                button.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
 
-                tableRow.addView(text);
-                tableRow.addView(button);
+            button.setText("Accept");
+            button2.setText("Reject");
 
-                tblNewPatients.addView(tableRow);
-            }
+            button.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+            tableRow.addView(text);
+            tableRow.addView(button);
+
+            button2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+            tableRow.addView(button2);
+
+            tblNewPatients.addView(tableRow);
+        }
+
     }
+
 }
+    class NewPatient {
+        String id, name, surname, age, gender;
+
+
+        public NewPatient(String id, String name, String surname, String age, String gender) {
+
+            this.id = id;
+            this.name = name;
+            this.surname = surname;
+            this.age = age;
+            this.gender = gender;
+        }
+
+    }
+
+
