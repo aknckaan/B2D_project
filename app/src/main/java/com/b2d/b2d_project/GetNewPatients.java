@@ -27,7 +27,7 @@ import java.util.Map;
  */
 
 public class GetNewPatients extends AsyncTask<String, String, ArrayList<String>> {
-    private static final String LOGIN_URL = "http://kaanakinci.me/B2D/getRequestList.php";
+    private static final String LOGIN_URL = "http://kaanakinci.me/B2D/getNewPatients.php";
 
 
 
