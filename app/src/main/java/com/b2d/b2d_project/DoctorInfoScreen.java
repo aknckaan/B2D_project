@@ -47,6 +47,8 @@ public class DoctorInfoScreen extends AppCompatActivity {
         id=i.getIntExtra("ID",0);
         viewAccount = (Button) findViewById(R.id.btnViewAccount);
         viewNewPatients = (Button) findViewById(R.id.btnViewNewP);
+        viewCurrPatients = (Button) findViewById(R.id.btnViewCurrP);
+        
 
         viewAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +63,15 @@ public class DoctorInfoScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(DoctorInfoScreen.this,NewPatientList.class);
+                i.putExtra("ID",id);
+                startActivity(i);
+            }
+        });
+
+        viewCurrPatients.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(DoctorInfoScreen.this,CurrentPatientList.class);
                 i.putExtra("ID",id);
                 startActivity(i);
             }
