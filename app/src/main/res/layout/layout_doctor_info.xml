@@ -3,9 +3,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/chart"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <Button
+            android:text="View New Patients"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnViewAccount"
+            android:layout_alignStart="@+id/btnViewAccount"
+            android:layout_marginTop="20dp"
+            android:id="@+id/btnViewNewP" />
+
+        <Button
+            android:text="View Account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnViewAccount"
+            android:layout_weight="1"
+            android:layout_marginTop="83dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="102dp" />
+
+        <Button
+            android:text="View Current Patients"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnViewNewP"
+            android:layout_alignStart="@+id/btnViewNewP"
+            android:layout_marginTop="20dp"
+            android:id="@+id/btnViewCurrP" />
+
+    </RelativeLayout>
 
 </LinearLayout>

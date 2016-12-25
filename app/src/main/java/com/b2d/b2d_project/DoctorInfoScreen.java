@@ -1,8 +1,20 @@
 package com.b2d.b2d_project;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+//import android.support.v7.app.AppCompatActivity;
+
+//import com.github.mikephil.charting.charts.LineChart;
+//import com.github.mikephil.charting.data.Entry;
+//import com.github.mikephil.charting.data.LineData;
+//import com.github.mikephil.charting.data.LineDataSet;
+
+//import java.util.ArrayList;
+//import java.util.List;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -18,9 +30,9 @@ import java.util.List;
 
 public class DoctorInfoScreen extends AppCompatActivity {
 
-    public DoctorInfoScreen() {
-    }
-
+    Button viewAccount;
+    Button viewNewPatients;
+    Button viewCurrPatients;
 
 
     @Override
@@ -29,26 +41,30 @@ public class DoctorInfoScreen extends AppCompatActivity {
 
         setContentView(R.layout.layout_doctor_info);
 
-        LineChart lc = (LineChart) findViewById(R.id.chart);
 
-        List<Entry> entries = new ArrayList<Entry>();
-        double j =0;
-        for(int i =0;i<15000;i++)
-        {
-                j=j+0.004;
-            entries.add(new Entry(i,(float)j));
-        }
+        Intent i=getIntent();
+        final int id;
+        id=i.getIntExtra("ID",0);
+        viewAccount = (Button) findViewById(R.id.btnViewAccount);
+        viewNewPatients = (Button) findViewById(R.id.btnViewNewP);
 
+        viewAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(DoctorInfoScreen.this,DeviceScreen.class);
 
-        LineDataSet dataSet = new LineDataSet(entries, "EEG data"); // add entries to dataset
-        dataSet.setColor(Color.BLUE);
-        dataSet.setValueTextColor(Color.GRAY);
-        dataSet.setValueTextSize(10);
+                startActivity(i);
+            }
+        });
 
-        LineData lineData = new LineData(dataSet);
-        lc.setData(lineData);
-        lc.setScaleYEnabled(false);
-        lc.invalidate();
+        viewNewPatients.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(DoctorInfoScreen.this,NewPatientList.class);
+                i.putExtra("ID",id);
+                startActivity(i);
+            }
+        });
 
 
     }

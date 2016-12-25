@@ -112,6 +112,7 @@ public class LoginActivity extends AppCompatActivity {
                                 }
 
                                 Intent i = new Intent(LoginActivity.this,DoctorInfoScreen.class);
+                                i.putExtra("ID",id);
                                 startActivity(i);
                             }
 
