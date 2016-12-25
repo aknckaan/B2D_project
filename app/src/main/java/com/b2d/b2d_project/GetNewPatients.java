@@ -29,20 +29,18 @@ import java.util.Map;
 public class GetNewPatients extends AsyncTask<String, String, ArrayList<String>> {
     private static final String LOGIN_URL = "http://kaanakinci.me/B2D/getNewPatients.php";
 
-
-
     public String result;
     ArrayList<String> arr3;
     private HttpURLConnection conn;
     public static final int CONNECTION_TIMEOUT = 15 * 1000;
     ProgressDialog p;
 
-    int pId;
+    int dId;
 
 
     public GetNewPatients(NewPatientList dId, ProgressDialog p)
     {
-        this.pId=pId;
+        this.dId=dId;
         this.p=p;
 
     }
@@ -56,7 +54,7 @@ public class GetNewPatients extends AsyncTask<String, String, ArrayList<String>>
     protected ArrayList<String> doInBackground(String... args) {
 
         HashMap<String, String> params = new HashMap<String, String>();
-        params.put("PId", ""+pId);
+        params.put("dId", ""+dId);
 
         JSONObject object = null;
         try {
