@@ -1,20 +1,16 @@
 package com.b2d.b2d_project;
 
-import android.app.Activity;
-import android.content.Context;
-import android.media.Image;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 
-import java.lang.reflect.Array;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by buseburcu on 20.10.2016.
@@ -33,30 +29,29 @@ public class DoctorInfoScreen extends AppCompatActivity {
 
         setContentView(R.layout.layout_doctor_info);
 
-        TableLayout tl= (TableLayout) findViewById(R.id.DoctorTable);
+        LineChart lc = (LineChart) findViewById(R.id.chart);
 
-        ArrayList<View> arr=new ArrayList<View>();
-
-
-       tl.addView(new Row(this),0);
-        tl.addView(new Row(this),1);
-
-    }
-
-    public class Row extends TableRow
-    {
-        Button btn;
-        ImageView img;
-
-
-        public Row(Context context) {
-
-            super(context);
-            this.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
-
-            setContentView(R.layout.table_row);
-            btn =(Button) findViewById(R.id.btnRow);
-            img=(ImageView)findViewById(R.id.imgvRow);
+        List<Entry> entries = new ArrayList<Entry>();
+        double j =0;
+        for(int i =0;i<15000;i++)
+        {
+                j=j+0.004;
+            entries.add(new Entry(i,(float)j));
         }
+
+
+        LineDataSet dataSet = new LineDataSet(entries, "EEG data"); // add entries to dataset
+        dataSet.setColor(Color.BLUE);
+        dataSet.setValueTextColor(Color.GRAY);
+        dataSet.setValueTextSize(10);
+
+        LineData lineData = new LineData(dataSet);
+        lc.setData(lineData);
+        lc.setScaleYEnabled(false);
+        lc.invalidate();
+
+
     }
+
+
 }
