@@ -31,6 +31,15 @@ public class FirebaseNotification extends FirebaseMessagingService {
 
         Intent notificationIntent = new Intent(this, LoginActivity.class);
 
+        String epilepsy= remoteMessage.getData().get("Epilepsy");
+        String file= remoteMessage.getData().get("File");
+        String pId=remoteMessage.getData().get("PId");
+        notificationIntent.putExtra("Epilepsy",remoteMessage.getData().get("Epilepsy"));
+        notificationIntent.putExtra("File",remoteMessage.getData().get("File"));
+        notificationIntent.putExtra("PId",remoteMessage.getData().get("PId"));
+
+        System.out.println("Firebase "+epilepsy+" "+file+" "+pId);
+
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 

@@ -1,28 +1,10 @@
 package com.b2d.b2d_project;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-//import android.support.v7.app.AppCompatActivity;
-
-//import com.github.mikephil.charting.charts.LineChart;
-//import com.github.mikephil.charting.data.Entry;
-//import com.github.mikephil.charting.data.LineData;
-//import com.github.mikephil.charting.data.LineDataSet;
-
-//import java.util.ArrayList;
-//import java.util.List;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-
-import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by buseburcu on 20.10.2016.
@@ -44,7 +26,29 @@ public class DoctorInfoScreen extends AppCompatActivity {
 
         Intent i=getIntent();
         final int id;
-        id=i.getIntExtra("ID",0);
+        String fileName;
+        String epilepsy;
+        String pId;
+
+            id = i.getIntExtra("ID", 0);
+            fileName = i.getStringExtra("File");
+            epilepsy = i.getStringExtra("Epilepsy");
+            pId = i.getStringExtra("PId");
+            //epilepsy="1";
+            //fileName="DW_16-39_0.txt";
+            //pId="63";
+        try {
+            if (epilepsy.equals("1")) {
+                Intent intent = new Intent(DoctorInfoScreen.this, DataChart.class);
+                intent.putExtra("File", fileName);
+                System.out.println("-------------------------------------");
+                intent.putExtra("PId", pId);
+                startActivity(intent);
+            }
+        }catch (Exception e)
+        {
+
+        }
         viewAccount = (Button) findViewById(R.id.btnViewAccount);
         viewNewPatients = (Button) findViewById(R.id.btnViewNewP);
 

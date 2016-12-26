@@ -19,14 +19,15 @@ import com.google.firebase.iid.FirebaseInstanceId;
 
 public class LoginActivity extends AppCompatActivity {
 
-
+    String fileName;
+    String epilepsy="";
     String usr;
     String pw;//will be retrieved from database
     EditText password;
     EditText username;
     Button btnLogin;
     CheckBox cbRemember;
-    String a;
+    String pId;
     CheckBox cbAuto;
     ProgressDialog pd;
     SharedPreferences.Editor editor;
@@ -42,11 +43,21 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         try {
-                a = getIntent().getExtras().get("pId").toString();
+                epilepsy=getIntent().getStringExtra("Epilepsy");
+
+
+                if(epilepsy.equals("1"))
+                {
+                    pId = getIntent().getStringExtra("PId");
+                    fileName= getIntent().getStringExtra("File");
+
+                }
         }catch (Exception e)
         {
 
         }
+
+        System.out.println("LOGIN: "+epilepsy+" "+pId+" "+fileName);
 
         password =(EditText) findViewById(R.id.etLoginPassword);
         username = (EditText)findViewById(R.id.etLoginUserName);
@@ -112,6 +123,18 @@ public class LoginActivity extends AppCompatActivity {
                                 }
 
                                 Intent i = new Intent(LoginActivity.this,DoctorInfoScreen.class);
+
+                                try {
+                                    if (epilepsy.equals("1")) {
+                                        i.putExtra("Epilepsy", epilepsy);
+                                        i.putExtra("File", fileName);
+                                        i.putExtra("PId", pId);
+                                    }
+                                } catch (Exception e)
+                                {
+
+                                }
+
                                 i.putExtra("ID",id);
                                 startActivity(i);
                             }
