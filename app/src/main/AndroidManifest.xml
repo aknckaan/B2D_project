@@ -48,7 +48,8 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".CurrentPatientList"></activity>
+        <activity android:name=".CurrentPatientList" />
+        <activity android:name=".GetCurrentPatientList"></activity>
     </application>
 
 </manifest>
