@@ -80,8 +80,6 @@ public class DoctorInfoScreen extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-
     }
 
 

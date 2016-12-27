@@ -17,20 +17,32 @@
         android:label="B2D"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+
+
+        <activity android:name=".LoginActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PatientInfoScreen" />
-        <activity android:name=".DoctorInfoScreen" />
-        <activity android:name=".DeviceScreen" />
-        <activity android:name=".DoctorList" />
-        <activity android:name=".PatientRegister" />
-        <activity android:name=".NewPatientList" />
+        <activity android:name=".PatientInfoScreen"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".DoctorInfoScreen"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".DeviceScreen"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".DoctorList"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".PatientRegister"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".NewPatientList"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".DataChart" />
+        <activity android:name=".CurrentPatientList"  android:theme="@style/Theme.AppCompat.NoActionBar"
+            />
+        <activity android:name=".GetCurrentPatientList" android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -48,8 +60,6 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".CurrentPatientList" />
-        <activity android:name=".GetCurrentPatientList"></activity>
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,10 +13,18 @@
             android:text="View New Patients"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btnViewAccount"
-            android:layout_alignStart="@+id/btnViewAccount"
-            android:layout_marginTop="20dp"
-            android:id="@+id/btnViewNewP" />
+            android:id="@+id/btnViewNewP"
+            android:layout_centerVertical="true"
+            android:layout_alignStart="@+id/btnViewCurrP"
+            android:layout_alignEnd="@+id/btnViewCurrP" />
+
+        <Button
+            android:text="View Current Patients"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnViewCurrP"
+            android:layout_below="@+id/btnViewNewP"
+            android:layout_centerHorizontal="true" />
 
         <Button
             android:text="View Account"
@@ -23,19 +32,23 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnViewAccount"
             android:layout_weight="1"
-            android:layout_marginTop="83dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="102dp" />
+            android:layout_above="@+id/btnViewNewP"
+            android:layout_alignStart="@+id/btnViewNewP"
+            android:layout_alignEnd="@+id/btnViewNewP" />
 
-        <Button
-            android:text="View Current Patients"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btnViewNewP"
-            android:layout_alignStart="@+id/btnViewNewP"
-            android:layout_marginTop="20dp"
-            android:id="@+id/btnViewCurrP" />
+            app:srcCompat="@mipmap/btod"
+            android:id="@+id/imageView3"
+            android:maxHeight="10dp"
+            android:maxWidth="10dp"
+            android:minHeight="10dp"
+            android:minWidth="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="7dp"
+            android:layout_toEndOf="@+id/btnViewAccount" />
 
     </RelativeLayout>
 

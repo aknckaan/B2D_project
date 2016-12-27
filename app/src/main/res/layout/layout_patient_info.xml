@@ -13,20 +13,20 @@
         android:layout_marginEnd="11dp">
 
         <Button
-            android:text="FindDoctor"
+            android:text="Find Doctor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btnFindDoctor"
             android:layout_weight="1"
             android:layout_centerVertical="true"
-            android:layout_alignStart="@+id/btnGoToDevice"
-            android:layout_alignEnd="@+id/btnGoToDevice" />
+            android:layout_alignStart="@+id/btnViewAccount"
+            android:layout_alignEnd="@+id/btnViewAccount" />
 
         <Button
-            android:text="Connect to Device"
+            android:text="View  Account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnGoToDevice"
+            android:id="@+id/btnViewAccount"
             android:layout_weight="1"
             android:layout_above="@+id/btnFindDoctor"
             android:layout_centerHorizontal="true" />
@@ -35,13 +35,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@mipmap/btod"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
             android:id="@+id/imageView"
-            android:layout_marginStart="31dp"
-            android:layout_marginBottom="95dp"
-            android:layout_toEndOf="@+id/btnGoToDevice"
-            android:layout_above="@+id/btnGoToDevice" />
+            android:maxHeight="10dp"
+            android:maxWidth="10dp"
+            android:scaleType="fitCenter"
+            android:minHeight="10dp"
+            android:minWidth="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/btnViewAccount" />
     </RelativeLayout>
 
 </LinearLayout>

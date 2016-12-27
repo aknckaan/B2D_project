@@ -2,7 +2,6 @@ package com.b2d.b2d_project;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +12,7 @@ import android.widget.Button;
 
 public class PatientInfoScreen extends AppCompatActivity{
 
-    Button btnDevice;
+    //Button btnDevice;
     Button btnFindDoctor;
 
     @Override
@@ -24,17 +23,8 @@ public class PatientInfoScreen extends AppCompatActivity{
         Intent i=getIntent();
         final int id;
         id=i.getIntExtra("ID",0);
-        btnDevice = (Button) findViewById(R.id.btnGoToDevice);
+        //btnDevice = (Button) findViewById(R.id.btnGoToDevice);
         btnFindDoctor = (Button) findViewById(R.id.btnFindDoctor);
-
-        btnDevice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(PatientInfoScreen.this,DeviceScreen.class);
-
-                startActivity(i);
-            }
-        });
 
         btnFindDoctor.setOnClickListener(new View.OnClickListener() {
             @Override
