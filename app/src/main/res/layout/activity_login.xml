@@ -68,15 +68,6 @@
         android:layout_above="@+id/btnRegister"
         android:layout_alignStart="@+id/btnRegister" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/btod"
-        android:id="@+id/imageView"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/txtLoginId"
-        android:layout_above="@+id/txtLoginId" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -96,4 +87,12 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:layout_above="@+id/etLoginUserName"
         android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/btod"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

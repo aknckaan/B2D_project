@@ -1,12 +1,17 @@
 package com.b2d.b2d_project;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -55,13 +60,15 @@ public class NewPatientList extends AppCompatActivity {
             newp.add(np);
 
         }
-
         //görsel
-
-
         final TableRow tableRow1 = new TableRow(this);
         TableRow.LayoutParams lp = new  TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
         tableRow1.setLayoutParams(lp);
+        TableRow.LayoutParams lp1 = new  TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
+        TableRow.LayoutParams lp2;
+        lp2=new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, 1);
+        lp2.span=6;
+        lp1.span=3;
 
         final TextView textName1 = new TextView(this);
         final TextView textSurname1 = new TextView(this);
@@ -81,10 +88,10 @@ public class NewPatientList extends AppCompatActivity {
         textSurname1.setTypeface(null, Typeface.BOLD_ITALIC);
         textId1.setTypeface(null, Typeface.BOLD_ITALIC);
         textName1.setTypeface(null, Typeface.BOLD_ITALIC);
-        textName1.setTextSize(15);
-        textGender1.setTextSize(15);
-        textSurname1.setTextSize(15);
-        textId1.setTextSize(15);
+        textName1.setTextSize(20);
+        textGender1.setTextSize(20);
+        textSurname1.setTextSize(20);
+        textId1.setTextSize(20);
 
         textName1.setLayoutParams(lp);
         tableRow1.addView(textName1);
@@ -94,35 +101,20 @@ public class NewPatientList extends AppCompatActivity {
 
         textGender1.setLayoutParams(lp);
         tableRow1.addView(textGender1);
-
-        //lp.span=2;
-        textId1.setLayoutParams(lp);
+        textId1.setLayoutParams(lp1);
         tableRow1.addView(textId1);
 
 
 
         final TableRow tableRow2 = new TableRow(this);
-        //line black
+        //line white
         View v0 = new View(this);
-        v0.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, 1));
-        v0.setBackgroundColor(Color.rgb(0, 0, 0));
-        View v11 = new View(this);
-        v11.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, 1));
-        v11.setBackgroundColor(Color.rgb(0, 0, 0));
-        View v22 = new View(this);
-        v22.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, 1));
-        v22.setBackgroundColor(Color.rgb(0, 0, 0));
-        View v33 = new View(this);
-        v33.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, 1));
-        v33.setBackgroundColor(Color.rgb(0, 0, 0));
+        v0.setLayoutParams(lp2);
+        v0.setBackgroundColor(Color.rgb(255, 255, 255));
 
         tableRow2.addView(v0);
-        tableRow2.addView(v11);
-        tableRow2.addView(v22);
-        tableRow2.addView(v33);
 
-
-
+        tblNewPatients.setGravity(Gravity.LEFT);
 
         tblNewPatients.addView(tableRow1);
         tblNewPatients.addView(tableRow2);
@@ -140,25 +132,10 @@ public class NewPatientList extends AppCompatActivity {
             final TableRow tableRow22 = new TableRow(this);
             tableRow22.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
             View v = new View(this);
-            v.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, 1));
-            v.setBackgroundColor(Color.rgb(51, 51, 51));
-
-            View v1 = new View(this);
-            v1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, 1));
-            v1.setBackgroundColor(Color.rgb(51, 51, 51));
-
-            View v2 = new View(this);
-            v2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, 1));
-            v2.setBackgroundColor(Color.rgb(51, 51, 51));
-
-            View v3 = new View(this);
-            v3.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, 1));
-            v3.setBackgroundColor(Color.rgb(51, 51, 51));
-
+            v.setLayoutParams(lp2);
+            v.setBackgroundColor(Color.rgb(192, 192, 192));
             tableRow22.addView(v);
-            tableRow22.addView(v1);
-            tableRow22.addView(v2);
-            tableRow22.addView(v3);
+
             //
 
 
@@ -175,22 +152,19 @@ public class NewPatientList extends AppCompatActivity {
             textSurname.setText(newp.get(i).surname);
             textId.setText(newp.get(i).id);
 
-            textGender.setTextSize(13);
-            textName.setTextSize(13);
-            textSurname.setTextSize(13);
-            textId.setTextSize(13);
+            textGender.setTextSize(17);
+            textName.setTextSize(17);
+            textSurname.setTextSize(17);
+            textId.setTextSize(17);
 
 
-            textGender.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-            textId.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-            textName.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-            textSurname.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+            textGender.setLayoutParams(lp);
+            textId.setLayoutParams(lp);
+            textName.setLayoutParams(lp);
+            textSurname.setLayoutParams(lp);
 
-            final Button button = new Button(this);
-            final Button button2 = new Button(this);
-            button.setHeight(10);
-            button.setTextSize(12);
-            button.setFadingEdgeLength(12);
+            final ImageButton button = new ImageButton(this);
+            final ImageButton button2 = new ImageButton(this);
 
             final NewPatient np2 = newp.get(i);
 
@@ -213,29 +187,31 @@ public class NewPatientList extends AppCompatActivity {
             button2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    TableRow tr=(TableRow) view.getParent();
-                    ProgressDialog pd= new ProgressDialog(NewPatientList.this);
-
-                    AcceptRequest ar= new AcceptRequest("0",np2.id+"",id+"",pd);
-                    ar.execute();
-
-                    final TableRow parent = (TableRow) view.getParent();
-                    tblNewPatients.removeView(parent);
-
+                    displayDialog(np2,view);
                 }
             });
 
             // Creation  button
 
 
-            button.setText("Accept");
-            button2.setText("Reject");
+            //button.setText("Accept");
+            //button2.setText("Reject");
 
-            button.setTextColor(Color.WHITE);
-            button2.setTextColor(Color.WHITE);
-            button.setBackgroundColor(Color.rgb(0,153,0));
-            button2.setBackgroundColor(Color.rgb(204,0,0));
-            button.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+            //button.setTextColor(Color.WHITE);
+            //button2.setTextColor(Color.WHITE);
+
+            Bitmap myBm= BitmapFactory.decodeResource(getResources(), R.drawable.confirmation);
+            myBm = Bitmap.createScaledBitmap(myBm,100,100,true);
+            button.setImageBitmap(myBm);
+
+            Bitmap myBm2= BitmapFactory.decodeResource(getResources(), R.drawable.cross);
+            myBm2 = Bitmap.createScaledBitmap(myBm2,100,100,true);
+            button2.setImageBitmap(myBm2);
+
+            button.setBackgroundColor(Color.TRANSPARENT);
+            button2.setBackgroundColor(Color.TRANSPARENT);
+
+            button.setLayoutParams(new TableRow.LayoutParams(100, 100));
 
             tableRow.addView(textName);
             tableRow.addView(textSurname);
@@ -243,7 +219,9 @@ public class NewPatientList extends AppCompatActivity {
             tableRow.addView(textId);
             tableRow.addView(button);
 
-            button2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+            TableRow.LayoutParams par = new TableRow.LayoutParams(100,100);
+            par.leftMargin =  (int) ((float) 10 * scale);
+            button2.setLayoutParams(par);
             tableRow.addView(button2);
 
 
@@ -251,6 +229,34 @@ public class NewPatientList extends AppCompatActivity {
             tblNewPatients.addView(tableRow22);
         }
 
+    }
+    public void displayDialog(final NewPatient np2, final View view)
+    {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        TableRow tr=(TableRow) view.getParent();
+                        ProgressDialog pd= new ProgressDialog(NewPatientList.this);
+
+                        AcceptRequest ar= new AcceptRequest("0",np2.id+"",id+"",pd);
+                        ar.execute();
+
+                        final TableRow parent = (TableRow) view.getParent();
+                        tblNewPatients.removeView(parent);
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+                        return;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to reject patient: "+np2.name+" "+np2.surname+" ( id "+np2.id+")"+"?").setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show();
     }
 
 }

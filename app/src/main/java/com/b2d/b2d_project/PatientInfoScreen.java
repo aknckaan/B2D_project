@@ -12,8 +12,8 @@ import android.widget.Button;
 
 public class PatientInfoScreen extends AppCompatActivity{
 
-    //Button btnDevice;
     Button btnFindDoctor;
+    Button btnInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -22,9 +22,21 @@ public class PatientInfoScreen extends AppCompatActivity{
 
         Intent i=getIntent();
         final int id;
+        final String pw;
+        final String user;
         id=i.getIntExtra("ID",0);
-        //btnDevice = (Button) findViewById(R.id.btnGoToDevice);
+
+        btnInfo = (Button) findViewById(R.id.btnViewAccount);
         btnFindDoctor = (Button) findViewById(R.id.btnFindDoctor);
+
+        btnInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(PatientInfoScreen.this,PatientRegister.class);
+                i.putExtra("ID",id+"");
+                startActivity(i);
+            }
+        });
 
         btnFindDoctor.setOnClickListener(new View.OnClickListener() {
             @Override

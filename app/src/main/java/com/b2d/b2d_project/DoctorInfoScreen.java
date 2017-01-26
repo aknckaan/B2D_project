@@ -34,15 +34,13 @@ public class DoctorInfoScreen extends AppCompatActivity {
             fileName = i.getStringExtra("File");
             epilepsy = i.getStringExtra("Epilepsy");
             pId = i.getStringExtra("PId");
-            //epilepsy="1";
-            //fileName="DW_16-39_0.txt";
-            //pId="63";
+
         try {
             if (epilepsy.equals("1")) {
                 Intent intent = new Intent(DoctorInfoScreen.this, DataChart.class);
                 intent.putExtra("File", fileName);
-                System.out.println("-------------------------------------");
                 intent.putExtra("PId", pId);
+                intent.putExtra("Epilepsy","1");
                 startActivity(intent);
             }
         }catch (Exception e)
@@ -57,8 +55,8 @@ public class DoctorInfoScreen extends AppCompatActivity {
         viewAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(DoctorInfoScreen.this,DeviceScreen.class);
-
+                Intent i = new Intent(DoctorInfoScreen.this,PatientRegister.class);
+                i.putExtra("ID",id+"");
                 startActivity(i);
             }
         });

@@ -1,9 +1,13 @@
 package com.b2d.b2d_project;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -17,14 +21,17 @@ import java.util.concurrent.ExecutionException;
 public class DataChart extends AppCompatActivity {
 
     ProgressDialog pd;
-
+    String pId;
+    MenuItem item;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_chart);
 
         String fileName=getIntent().getStringExtra("File");
-        String pId=getIntent().getStringExtra("PId");
+        pId=getIntent().getStringExtra("PId");
+        item = (MenuItem) findViewById(R.id.action_name);
+        String epilepsy = getIntent().getStringExtra("Epilepsy");
 
         pd = new ProgressDialog(DataChart.this);
         pd.show();
@@ -57,17 +64,45 @@ public class DataChart extends AppCompatActivity {
         dataSet.setHighLightColor(Color.BLACK);
         dataSet.disableDashedLine();
 
-
         LineData lineData = new LineData(dataSet);
         lineData.setValueTextColor(Color.BLUE);
         dataSet.setHighlightEnabled(true);
         lc.setData(lineData);
-        lc.getDescription().setText("Data for patient");
+        lc.getDescription().setText("See patient data.");
         lc.animateX(2000);
         lc.getLegend().setEnabled(false);
         lc.setScaleYEnabled(false);
         lc.invalidate();
 
+        pd.dismiss();
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
 
+        inflater.inflate(R.menu.layout_menu, menu);
+
+        return true;
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // action with ID action_refresh was selected
+            case R.id.action_name:
+                if(getIntent().getStringExtra("Epilepsy")==null)
+                    return true;
+
+                Intent i = new Intent(DataChart.this,PatientFiles.class);
+                i.putExtra("PId",pId);
+                startActivity(i);
+                finish();
+                break;
+
+            default:
+                break;
+        }
+
+        return true;
     }
 }

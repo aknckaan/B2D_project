@@ -1,7 +1,6 @@
 package com.b2d.b2d_project;
 
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,6 +13,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
+
+import java.util.concurrent.ExecutionException;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -75,19 +76,31 @@ public class LoginActivity extends AppCompatActivity {
                     pw=password.getText().toString();
                     final Login lgn = new Login(username.getText().toString(),password.getText().toString(),pd,LoginActivity.this);
                     pd.show();
+                    String result ="";
                     lgn.execute();
 
-                    pd.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                        @Override
-                        public void onDismiss(DialogInterface dialogInterface) {
-                            if(lgn.result==null || lgn.result.equals("0"))
+                try {
+                    result=lgn.get();
+                    pd.dismiss();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+
+                    final String finalResult = result;
+
+                            if(finalResult==null)
                             {
                                 Toast.makeText(getApplicationContext(),"Check your internet connection and try again!",Toast.LENGTH_LONG).show();
                                 return;
                             }
 
-                            int id= Integer.parseInt(lgn.result.substring(0,lgn.result.length()-1));
-                            if(lgn.result.indexOf("P")>0&&id>0)
+                            int id=0;
+                            if(!finalResult.equals("0"))
+                                id= Integer.parseInt(lgn.result.substring(0,lgn.result.length()-1));
+
+                            if(finalResult.indexOf("P")>0&&id>0)
                             {
                                 TokenManager tkn= new TokenManager(usr,pw,FirebaseInstanceId.getInstance().getToken());
                                 tkn.execute();
@@ -102,9 +115,11 @@ public class LoginActivity extends AppCompatActivity {
 
                                 Intent i = new Intent(LoginActivity.this,PatientInfoScreen.class);
                                 i.putExtra("ID",id);
+                                i.putExtra("Password",pw);
+                                i.putExtra("Username",usr);
                                 startActivity(i);
                             }
-                            if(lgn.result.indexOf("D")>0&&id>0)
+                            if(finalResult.indexOf("D")>0&&id>0)
                             {
                                 TokenManager tkn= new TokenManager(usr,pw,FirebaseInstanceId.getInstance().getToken());
                                 tkn.execute();
@@ -131,10 +146,12 @@ public class LoginActivity extends AppCompatActivity {
                                 }
 
                                 i.putExtra("ID",id);
+                                i.putExtra("Password",pw);
+                                i.putExtra("Username",usr);
                                 startActivity(i);
                             }
 
-                            else if (lgn.result.equals("0"))
+                            else if (finalResult.equals("0"))
                             {
                                 AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(LoginActivity.this);
                                 dlgAlert.setMessage("wrong password or username");
@@ -143,8 +160,7 @@ public class LoginActivity extends AppCompatActivity {
                                 dlgAlert.setCancelable(true);
                                 dlgAlert.create().show();
                             }
-                        }
-                    });
+
             }
         });
 

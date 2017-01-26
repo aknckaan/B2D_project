@@ -21,27 +21,19 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Kaan on 16/12/2016.
+ * Created by Kaan on 27/12/2016.
  */
 
-public class Register extends AsyncTask<String, String, String> {
-    private static final String LOGIN_URL = "http://kaanakinci.me/B2D/register.php";
+public class GetInfo extends AsyncTask<String, String, ArrayList> {
+    private static final String LOGIN_URL = "http://kaanakinci.me/B2D/retreiveInfo.php";
 
-    private String password;
-    private String username;
-    private String gender;
-    private String name;
-    private String surname;
-    private String age;
-    private String city;
-    private String address;
-    private String phone;
-    private String country;
-    private String type;
+    private String pId;
+
     public String result;
     private HttpURLConnection conn;
     public static final int CONNECTION_TIMEOUT = 15 * 1000;
@@ -53,21 +45,10 @@ public class Register extends AsyncTask<String, String, String> {
     boolean failure = false;
 
 
-    public Register(String gender, String name, String surname, String username, String password, String age, String city, String address, String phone, String country, String type, ProgressDialog p, Activity a)
+    public GetInfo(String pId,ProgressDialog p)
     {
-        this.gender = gender;
-        this.name =  name;
-        this.surname =surname;
-        this.age = age;
-        this.city=city;
-        this.address=address;
-        this.phone=phone;
-        this.country = country;
-        this.type = type;
-        this.password=password;
-        this.username=username;
+        this.pId=pId;
         this.p=p;
-        this.a =a;
     }
     @Override
     protected void onPreExecute() {
@@ -76,33 +57,14 @@ public class Register extends AsyncTask<String, String, String> {
     }
 
     @Override
-    protected String doInBackground(String... args) {
+    protected ArrayList doInBackground(String... args) {
         // TODO Auto-generated method stub
         // Check for success tag
-        int success;
-
-        if(!isNetworkConnected())
-        {
-            result = -1+"";
-
-            return result;
-        }
-
-
+      ArrayList arr = new ArrayList();
 
         // Building Parameters
         HashMap<String, String> params = new HashMap<String, String>();
-        params.put("gender", gender);
-        params.put("name", name);
-        params.put("surname", surname);
-        params.put("age", age);
-        params.put("city", city);
-        params.put("address", address);
-        params.put("phone", phone);
-        params.put("country", country);
-        params.put("account", type);
-        params.put("username", username);
-        params.put("password", password);
+        params.put("PId", pId);
 
         JSONObject object = null;
         try {
@@ -135,11 +97,14 @@ public class Register extends AsyncTask<String, String, String> {
                     result += line;
                 }
 
-                String suc = result.substring(0,result.indexOf(","));
-                String []suc2= suc.split("\"");
-                suc = suc2[2];
+                //String suc = result.substring(0,result.indexOf(","));
+                String []suc2= result.split("\"");
 
-                result = suc;
+                for(int i =3;i<suc2.length;i=i+4)
+                {
+                    arr.add(suc2[i]);
+                }
+
 
             }
         } catch (ProtocolException e) {
@@ -150,7 +115,7 @@ public class Register extends AsyncTask<String, String, String> {
             e.printStackTrace();
         }
 
-        return result;
+        return arr;
     }
 
     private boolean isNetworkConnected() {
@@ -187,7 +152,7 @@ public class Register extends AsyncTask<String, String, String> {
      * **/
     protected void onPostExecute(String file_url) {
         // dismiss the dialog once product deleted
-            //p.dismiss();
+        //p.dismiss();
 
 
     }

@@ -45,10 +45,9 @@
             android:maxWidth="10dp"
             android:minHeight="10dp"
             android:minWidth="10dp"
+            android:layout_marginTop="21dp"
             android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="7dp"
-            android:layout_toEndOf="@+id/btnViewAccount" />
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 

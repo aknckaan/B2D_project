@@ -102,16 +102,23 @@ public class Login extends AsyncTask<String, String, String> {
 
                     String suc = result.substring(0,result.indexOf(","));
                     String []suc2= suc.split("\"");
+                    //suc= suc2[2].substring(suc2[2].indexOf(':')+1,suc2[2].length());
                     suc = suc2[3];
 
 
                     if(!suc.equals("0")&&result.indexOf("Patient")>0)
                     {
+                        //suc="1";
                         suc+="P";
                     }
                     else if(!suc.equals("0")&&result.indexOf("Doctor")>0)
                     {
+                        //suc="1";
                         suc+="D";
+                    }
+                    else if (suc.equals("0"))
+                    {
+                        suc="0";
                     }
 
                     result = suc;
@@ -164,7 +171,7 @@ public class Login extends AsyncTask<String, String, String> {
          * **/
         protected void onPostExecute(String file_url) {
             // dismiss the dialog once product deleted
-            p.dismiss();
+            //p.dismiss();
 
 
         }

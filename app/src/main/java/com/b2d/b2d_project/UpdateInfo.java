@@ -25,17 +25,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Kaan on 16/12/2016.
+ * Created by Kaan on 27/12/2016.
  */
 
-public class Register extends AsyncTask<String, String, String> {
-    private static final String LOGIN_URL = "http://kaanakinci.me/B2D/register.php";
+public class UpdateInfo extends AsyncTask<String, String, String> {
+    private static final String LOGIN_URL = "http://kaanakinci.me/B2D/updateInfo.php";
 
     private String password;
     private String username;
     private String gender;
-    private String name;
-    private String surname;
     private String age;
     private String city;
     private String address;
@@ -53,11 +51,9 @@ public class Register extends AsyncTask<String, String, String> {
     boolean failure = false;
 
 
-    public Register(String gender, String name, String surname, String username, String password, String age, String city, String address, String phone, String country, String type, ProgressDialog p, Activity a)
+    public UpdateInfo(String gender, String username, String password, String age, String city, String address, String phone, String country, String type, ProgressDialog p, Activity a)
     {
         this.gender = gender;
-        this.name =  name;
-        this.surname =surname;
         this.age = age;
         this.city=city;
         this.address=address;
@@ -93,8 +89,6 @@ public class Register extends AsyncTask<String, String, String> {
         // Building Parameters
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("gender", gender);
-        params.put("name", name);
-        params.put("surname", surname);
         params.put("age", age);
         params.put("city", city);
         params.put("address", address);
@@ -137,7 +131,7 @@ public class Register extends AsyncTask<String, String, String> {
 
                 String suc = result.substring(0,result.indexOf(","));
                 String []suc2= suc.split("\"");
-                suc = suc2[2];
+                suc = suc2[3];
 
                 result = suc;
 
@@ -187,7 +181,7 @@ public class Register extends AsyncTask<String, String, String> {
      * **/
     protected void onPostExecute(String file_url) {
         // dismiss the dialog once product deleted
-            //p.dismiss();
+        //p.dismiss();
 
 
     }

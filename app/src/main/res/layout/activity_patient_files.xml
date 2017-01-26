@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_patient_files"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.b2d.b2d_project.PatientFiles">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textView9"
+        android:id="@+id/scrView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:text="Name"
+                    android:ems="10"
+                    android:id="@+id/etPFAddress"
+                    android:layout_alignStart="@+id/etPFPhone"
+                    android:layout_alignTop="@+id/tvPFAddress"
+                    android:layout_above="@+id/textView9" />
+
+                <TextView
+            android:text="Surname: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvPFName"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="20dp"
+            android:id="@+id/tvPFSurname:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <TextView
+                    android:text="Patient's Files"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView9"
+                    android:layout_centerHorizontal="true"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:layout_below="@+id/tvPFAddress" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:text="Name"
+                    android:ems="10"
+                    android:id="@+id/etPFPhone"
+                    android:layout_alignTop="@+id/tvPFPhone"
+                    android:layout_alignEnd="@+id/textView8"
+                    android:layout_above="@+id/tvPFAddress" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:text="Name"
+                    android:ems="10"
+                    android:layout_alignTop="@+id/tvPFAge"
+                    android:id="@+id/etPFAge"
+                    android:layout_alignBottom="@+id/tvPFAge"
+                    android:layout_alignStart="@+id/etPFPhone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:text="Name"
+                    android:ems="10"
+                    android:layout_alignTop="@+id/tvPFGender"
+                    android:id="@+id/etPFGender"
+                    android:layout_above="@+id/tvPFAge"
+                    android:layout_alignStart="@+id/etPFAge" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:text="Name"
+                    android:ems="10"
+                    android:layout_alignTop="@+id/tvPFSurname:"
+                    android:id="@+id/etPFSurname"
+                    android:layout_alignBottom="@+id/tvPFSurname:"
+                    android:layout_alignStart="@+id/etPFGender" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:text="Name"
+                    android:ems="10"
+                    android:id="@+id/etPFName"
+                    android:layout_above="@+id/tvPFSurname:"
+                    android:layout_alignTop="@+id/tvPFName"
+                    android:layout_alignStart="@+id/etPFSurname" />
+
+                <TextView
+                    android:text="Phone: "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/tvPFPhone"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_below="@+id/tvPFAge"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignEnd="@+id/tvPFAddress" />
+
+                <TextView
+                    android:text="Patient Information"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/textView8"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                <TextView
+                    android:text="Name: "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvPFName"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginTop="46dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignEnd="@+id/tvPFSurname:" />
+
+                <TextView
+                    android:text="Address:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvPFPhone"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="11dp"
+                    android:id="@+id/tvPFAddress"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_alignEnd="@+id/tvPFAge" />
+
+                <TextView
+                    android:text="Gender:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvPFGender"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_below="@+id/tvPFSurname:"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="16dp"
+                    android:layout_alignEnd="@+id/tvPFSurname:" />
+
+                <TextView
+                    android:text="Age: "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvPFGender"
+                    android:layout_alignEnd="@+id/tvPFGender"
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/tvPFAge"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_alignParentStart="true" />
+            </RelativeLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="11dp"
+                        android:id="@+id/tblPF"
+                        android:layout_below="@+id/textView9">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </TableLayout>
+                </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
