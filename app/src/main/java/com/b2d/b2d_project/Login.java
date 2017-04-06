@@ -171,7 +171,8 @@ public class Login extends AsyncTask<String, String, String> {
          * **/
         protected void onPostExecute(String file_url) {
             // dismiss the dialog once product deleted
-            //p.dismiss();
+            ((LoginActivity)a).login(result);
+            p.dismiss();
 
 
         }

@@ -1,5 +1,6 @@
 package com.b2d.b2d_project;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
@@ -40,13 +41,14 @@ public class TxtView extends AsyncTask<String, String, ArrayList<Double>> {
     String pId;
     String fileName;
     Object LOCK;
+    Activity a;
 
-
-    public TxtView(String fileName, String pId, ProgressDialog p)
+    public TxtView(String fileName, String pId, ProgressDialog p, Activity a)
     {
         this.pId=pId;
         this.p=p;
         this.fileName=fileName;
+        this.a=a;
 
     }
     @Override
@@ -95,26 +97,26 @@ public class TxtView extends AsyncTask<String, String, ArrayList<Double>> {
                 }
                 result = result.substring(2,result.length()-1);
                 String valueArr[]=result.split("n");
+
                 for (int i =0;i<valueArr.length;i++)
                 {
                     if(valueArr[i].indexOf("\\")>0)
                     {
-                       String a=valueArr[i].substring(0,valueArr[i].length()-1);
-                        valueArr[i]=a.substring(0,a.indexOf('.')+3);
-
-
-
+                       String a=valueArr[i].substring(0,valueArr[i].indexOf("\\"));
+                        if(a.length()>5)
+                            valueArr[i]=a.substring(0,a.indexOf('.')+3);
+                        else
+                            valueArr[i]=a;
                     }
 
-                    valueArr[i]=valueArr[i];
+                    //valueArr[i]=valueArr[i];
                 }
 
-                Double a = Double.parseDouble(valueArr[0]);
-                values.add(Double.parseDouble(valueArr[0]));
 
                 System.out.println("Chart: ");
                 for (int i =0;i<valueArr.length;i++)
                 {
+
 
                     values.add(Double.parseDouble(valueArr[i]));
                     System.out.println("Chart: "+i);
@@ -130,6 +132,7 @@ public class TxtView extends AsyncTask<String, String, ArrayList<Double>> {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
 
         return values;
     }
@@ -164,6 +167,7 @@ public class TxtView extends AsyncTask<String, String, ArrayList<Double>> {
 
         super.onPostExecute(arr4);
 
+        ((DataChart)a).fillArray(values);
         p.dismiss();
     }
 

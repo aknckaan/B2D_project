@@ -16,13 +16,16 @@ import com.github.mikephil.charting.data.LineDataSet;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class DataChart extends AppCompatActivity {
 
     ProgressDialog pd;
     String pId;
     MenuItem item;
+    ArrayList arr=new ArrayList();
+    LineChart lc;
+    TxtView myView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,12 +38,11 @@ public class DataChart extends AppCompatActivity {
 
         pd = new ProgressDialog(DataChart.this);
         pd.show();
-        LineChart lc = (LineChart) findViewById(R.id.chart);
+        lc = (LineChart) findViewById(R.id.chart);
 
-        final TxtView myView = new TxtView(fileName,pId,pd);
+        myView = new TxtView(fileName,pId,pd, this);
         myView.execute();
-        ArrayList arr = new ArrayList();
-        try {
+        /*try {
             arr=myView.get();
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -72,9 +74,10 @@ public class DataChart extends AppCompatActivity {
         lc.animateX(2000);
         lc.getLegend().setEnabled(false);
         lc.setScaleYEnabled(false);
+
         lc.invalidate();
 
-        pd.dismiss();
+       */
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -85,6 +88,42 @@ public class DataChart extends AppCompatActivity {
         return true;
 
     }
+
+    public void fillArray(ArrayList arr2)
+    {
+        for(int i=0;i<arr2.size();i++)
+        {
+            arr.add(arr2.get(i));
+        }
+
+        final List<Entry> entries = new ArrayList<Entry>();
+
+
+        double j =0;
+        for(int i =0;i<arr.size();i++)
+        {
+            j=j+0.004;
+            entries.add(new Entry((float)j,(float)((double)myView.values.get(i))));
+        }
+        final LineDataSet dataSet = new LineDataSet(entries, "EEG data"); // add entries to dataset
+        dataSet.setColor(Color.BLUE);
+        dataSet.setValueTextColor(Color.DKGRAY);
+        dataSet.setValueTextSize(10);
+        dataSet.setHighLightColor(Color.BLACK);
+        dataSet.disableDashedLine();
+
+        LineData lineData = new LineData(dataSet);
+        lineData.setValueTextColor(Color.BLUE);
+        dataSet.setHighlightEnabled(true);
+        lc.setData(lineData);
+        lc.getDescription().setText("See patient data.");
+        lc.animateX(2000);
+        lc.getLegend().setEnabled(false);
+        lc.setScaleYEnabled(false);
+
+        lc.invalidate();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
