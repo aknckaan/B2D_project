@@ -14,7 +14,7 @@ public class PatientInfoScreen extends AppCompatActivity{
 
     Button btnFindDoctor;
     Button btnInfo;
-
+    Button btnDevice;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -23,11 +23,13 @@ public class PatientInfoScreen extends AppCompatActivity{
         Intent i=getIntent();
         final int id;
         final String pw;
-        final String user;
+        final String user=i.getStringExtra("Username");
         id=i.getIntExtra("ID",0);
+
 
         btnInfo = (Button) findViewById(R.id.btnViewAccount);
         btnFindDoctor = (Button) findViewById(R.id.btnFindDoctor);
+        btnDevice = (Button) findViewById(R.id.btnDevice);
 
         btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +45,16 @@ public class PatientInfoScreen extends AppCompatActivity{
             public void onClick(View view) {
                 Intent i = new Intent(PatientInfoScreen.this,DoctorList.class);
                 i.putExtra("ID",id);
+                startActivity(i);
+            }
+        });
+
+        btnDevice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(PatientInfoScreen.this,DeviceScreen.class);
+                i.putExtra("ID",id);
+                i.putExtra("Username",user);
                 startActivity(i);
             }
         });

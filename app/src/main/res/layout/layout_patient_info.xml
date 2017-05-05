@@ -44,6 +44,15 @@
             android:layout_above="@+id/btnViewAccount"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="14dp" />
+
+        <Button
+            android:id="@+id/btnDevice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/btnFindDoctor"
+            android:layout_alignStart="@+id/btnFindDoctor"
+            android:layout_below="@+id/btnFindDoctor"
+            android:text="Connect To Device" />
     </RelativeLayout>
 
 </LinearLayout>
