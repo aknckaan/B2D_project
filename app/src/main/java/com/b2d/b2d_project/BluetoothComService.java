@@ -6,6 +6,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
@@ -89,22 +90,44 @@ public class BluetoothComService extends IntentService {
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
 
+        /*Messenger messenger=(Messenger)((Bundle)intent.getExtras()).get("messenger");
+        Message msg = Message.obtain();*/
         if(registered)
         {
+            Bundle bundle = new Bundle();
+            bundle.putString("name", "Already Connected");
+            /*msg.setData(bundle); //put the data here
+            try {
+                messenger.send(msg);
+            } catch (RemoteException e) {
+                Log.i("error", "error");
+            }*/
             Toast.makeText(getApplicationContext(), "Already connected.", Toast.LENGTH_LONG).show();
             return;
         }
 
         else
-            Toast.makeText(getApplicationContext(), "Connecting.", Toast.LENGTH_LONG).show();
+        {
+            /*Bundle bundle = new Bundle();
+            /bundle.putString("name", "Connecting");
+            msg.setData(bundle); //put the data here
+            try {
+                messenger.send(msg);
+            } catch (RemoteException e) {
+                Log.i("error", "error");
+            }*/
 
-        Toast.makeText(getApplicationContext(), "Service registered", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Connecting.", Toast.LENGTH_LONG).show();
+            registered=!registered;
+
+        }
+
+
+
         this.id=intent.getIntExtra("id",0);
         this.adress=intent.getStringExtra("adress");
         this.user=intent.getStringExtra("user");
 
-        System.out.print("123");
-        Toast.makeText(getApplicationContext(), "Service registered", Toast.LENGTH_LONG).show();
         final UUID SERIAL_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
         BluetoothDevice device = myBluetoothAdapter.getRemoteDevice(adress);
         BluetoothSocket socket = null;
@@ -121,6 +144,15 @@ public class BluetoothComService extends IntentService {
 
 
                 socket.connect();
+                Bundle bundle = new Bundle();
+                bundle.putString("name", "Connected");
+                /*msg.setData(bundle); //put the data here
+                try {
+                messenger.send(msg);
+                } catch (RemoteException e) {
+                Log.i("error", "error");
+                }*/
+                Toast.makeText(getApplicationContext(), "Connected.", Toast.LENGTH_LONG).show();
                 out = socket.getOutputStream();
                 in=socket.getInputStream();
                 final DataInputStream mmInStream = new DataInputStream(in);

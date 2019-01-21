@@ -128,17 +128,23 @@ public class DeviceScreen extends AppCompatActivity {
 
                 String item = (deviceList.getItemAtPosition(i)).toString();
                 String data[]=item.split("\n");
-                pd=new ProgressDialog(DeviceScreen.this);
+                //pd=new ProgressDialog(DeviceScreen.this);
+                //pd.setTitle("Connecting...");
+                //pd.show();
+                final Intent intent = new Intent(DeviceScreen.this,BluetoothComService.class);
+                //intent.putExtra("messenger",new Messenger(handler));
+                intent.putExtra("adress",data[1]);
+                intent.putExtra("id",id);
+                intent.putExtra("user",user);
+                startService(intent);
 
-                    Toast.makeText(getApplicationContext(), "Connecting the device...", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(DeviceScreen.this,BluetoothComService.class);
-                    intent.putExtra("adress",data[1]);
-                    intent.putExtra("id",id);
-                    intent.putExtra("user",user);
-
-                    startService(intent);
-
-
+               /* pd.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        stopService(intent);
+                        Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_LONG).show();
+                    }
+                });*/
 
             }
         });
@@ -219,6 +225,24 @@ public class DeviceScreen extends AppCompatActivity {
 
     // Create a BroadcastReceiver for ACTION_FOUND.
 
+
+    /*Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            Bundle reply = msg.getData();
+            String s=(String)reply.get("name");
+            if(s.equals("Connected"))
+            {
+                pd.dismiss();
+                Toast.makeText(getApplicationContext(), "Connected.", Toast.LENGTH_LONG).show();
+            }else if(s.equals("Already Connected"))
+            {
+                pd.dismiss();
+                Toast.makeText(getApplicationContext(), "Already Connected..", Toast.LENGTH_LONG).show();
+            }
+
+        }
+    };*/
 
     @Override
     protected void onDestroy()

@@ -104,7 +104,7 @@ public class TxtView extends AsyncTask<String, String, ArrayList<Double>> {
                     {
                        String a=valueArr[i].substring(0,valueArr[i].indexOf("\\"));
                         if(a.length()>5)
-                            valueArr[i]=a.substring(0,a.indexOf('.')+3);
+                            valueArr[i]=a.substring(0,a.indexOf('.')+1);
                         else
                             valueArr[i]=a;
                     }
