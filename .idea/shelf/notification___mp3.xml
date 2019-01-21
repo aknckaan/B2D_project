@@ -1,0 +1,9 @@
+<changelist name="notification___mp3" date="1482668554114" recycled="false">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/notification___mp3/shelved.patch" />
+  <option name="DESCRIPTION" value="notification + mp3" />
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="app/src/main/res/raw/btod_notif.mp3" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/notification___mp3/btod_notif.mp3" />
+  </binary>
+</changelist>
