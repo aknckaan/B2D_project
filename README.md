@@ -1,0 +1,4 @@
+My bachalors dissertation project.
+  
+  B2D is an app which only runs on Android devices. This app is designed for detecting possible epilepsy attacks of the user and in case of an epilesly, it sends warning messages to hospital. The app is designed to be used together with OpenBCI EEG device. The communication between the app and the hospital of the app is established via a web server. The android app uses Json arrays to post and gather information from/to PHP page, which process the information and forwards the information to android firebase notification center.
+  The app has built in one way real time monitoring and cloud data storage functionality. Which means, the current data of the user can be seen by the doctor and all the data that is being captured by the device is uploaded to the cloud. The data is kept 3 days and will be deleted afterwards. This system is built as a protection for false epilepsy alarms. 
